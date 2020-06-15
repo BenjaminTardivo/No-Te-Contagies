@@ -5,7 +5,7 @@ var config = {
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 300},
+            gravity: { y: 0},
             debug: false
         }
     },
@@ -16,3 +16,4 @@ var game = new Phaser.Game(config);
 
 var player;
 var score;
+var cursors;
