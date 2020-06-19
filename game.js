@@ -17,4 +17,5 @@ var game = new Phaser.Game(config);
 var player;
 var score;
 var cursors;
-                                  
+var bombs;
+                   

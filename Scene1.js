@@ -10,6 +10,7 @@ preload ()
     this.load.image('backgorund', 'images/bg.jpg');
     this.load.image('jugador', 'images/star.png');
     this.load.image('boton', 'images/boton.jpg');
+    this.load.image('malo', 'images/bomb.png');
 }
 
 create ()
@@ -22,4 +23,4 @@ create ()
 
 
 
-}
+}           
