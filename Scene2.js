@@ -7,11 +7,10 @@ class Scene2 extends Phaser.Scene {
     create ()
     {
         //Fondo
-        this.add.image(400, 300, 'titulo')
+        this.add.image(400, 300, 'backgorund')
         
         //personaje
         player = this.physics.add.image(400, 300, 'jugador')
-        this.bomba = this.add.image(config.width/2 - 50, config.height/2,'malo')
         player.setCollideWorldBounds(true);
 
         if (cursors =! undefined){
@@ -19,6 +18,16 @@ class Scene2 extends Phaser.Scene {
         };
 
         bombs = this.physics.add.group();
+        //this.physics.add.collider(player, bombs, this.virushit, null, this)
+
+        colliders = this.physics.add.staticGroup();
+        colliders.create(-20, 300, 'collider');
+        colliders.create(820, 300, 'collider');
+        colliders.create(400, -20, 'collider2');
+        colliders.create(400, 620, 'collider2');
+        this.physics.add.collider(colliders, bombs, this.viruserrase, null, this)
+
+
 
 
 
@@ -52,16 +61,46 @@ class Scene2 extends Phaser.Scene {
             var x =  Phaser.Math.Between(0, 800)
             var Y = Phaser.Math.Between(0, 600)
 
-            var bomb = bombs.create (x, Y, 'malo');
-            if (bomb.y >= 600){
-                bomb.setVelocityY(Phaser.Math.Between(10), 20);
-            }
-                else {
-                    bomb.setVelocityY(Phaser.Math.Between(-10), 0);
-                }
-            
+
+            var bomb = bombs.create (x, 0, 'malo');
+            var bomb2 = bombs.create (0, Y, 'malo');
+            var bomb3 = bombs.create (800, Y, 'malo');
+            var bomb4 = bombs.create (x, 600, 'malo')
+
+                bomb.setVelocityY (200)
+                bomb2.setVelocityX (200)
+                bomb3.setVelocityX (-200)
+                bomb4.setVelocityY (-200)
+
+               // if (bomb.y < 2) {
+               //     bomb.destroy()
+               //     console.log('c')
+               // }
+
+
+               if (lives <= 0){
+               //    this.gameover()
+               }
+
+
+
             
             bomb.allowGravity = false;
     }
+    virushit(player, bomb){
+        bomb.destroy()
+        lives --
+      //  console.log(lives)
+    }
+    viruserrase(collider, bomb){
+        bomb.destroy()
+        console.log('chau')
+    }
+
+    gameover(){
+        gameOver = true;
+        this.physics.pause();
+    }
+
 }
 

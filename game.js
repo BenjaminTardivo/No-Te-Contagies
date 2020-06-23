@@ -13,9 +13,12 @@ var config = {
 };
 
 var game = new Phaser.Game(config);
+var gameOver;
 
 var player;
 var score;
 var cursors;
 var bombs;
+var colliders;
+var lives = 3;
                    
