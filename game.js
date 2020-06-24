@@ -6,7 +6,7 @@ var config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 0},
-            debug: false
+            debug: true
         }
     },
     scene: [Scene1, Scene2]
@@ -18,7 +18,14 @@ var gameOver;
 var player;
 var score;
 var cursors;
-var bombs;
+var bads;
+var goods;
 var colliders;
+var patron;
+var puntaje;
+var scoreText;
+
+var timedEvent;
+var timedEvent2;
 var lives = 3;
                    
