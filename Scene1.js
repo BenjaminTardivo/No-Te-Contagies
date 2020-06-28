@@ -5,24 +5,33 @@ constructor() {
 
 preload ()
 {
-    this.load.image('titulo', 'images/122268.jpg');
+    this.load.image('Menu', 'images/Menu.png');
+    this.load.image('credits', 'images/creditos.png');
     this.load.image('backgorund', 'images/background.png');
     this.load.image('jugador', 'images/star.png');
-    this.load.image('boton', 'images/boton.jpg');
+    this.load.image('boton-jugar', 'images/boton-jugar.png');
+    this.load.image('bcreditos', 'images/bcreditos.png')
+    this.load.image('bback', 'images/bback.png')
     this.load.image('virus', 'images/virus.png');
+    this.load.image('breintentar', 'images/breintenar.png');
+    this.load.image('bsalir','images/bsalir.png')
     this.load.image('collider', 'images/collider.png');
     this.load.image('collider2', 'images/collider2.png');
     this.load.image('barro', 'images/barro.png')
-    this.load.image('jeringa', 'images/jeringa.png')
-    this.load.image('bomb', 'images/bomb.png')
+    this.load.image('jeringa', 'images/vacuna.png')
+    this.load.image('jabon', 'images/Jabon.png')
 }
 
 create ()
 {
-    this.add.image(400, 300, 'titulo').setScale(0.56)
-    var titulo= this.add.image(400, 300, 'boton').setScale(0.56);
-    titulo.setInteractive()
-    titulo.on('pointerdown', () => this.scene.start('game'));
+    this.add.image(400, 300, 'Menu')
+    var jugar= this.add.image(400, 300, 'boton-jugar').setScale(0.56);
+    jugar.setInteractive()
+    jugar.on('pointerdown', () => this.scene.start('game'));
+
+    var creditos = this.add.image(400, 375, 'bcreditos').setScale(0.56);
+    creditos.setInteractive()
+    creditos.on('pointerdown', () => (this.scene.start('Creditos')))
 }
 
 

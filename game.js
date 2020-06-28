@@ -2,14 +2,18 @@ var config = {
     type: Phaser.AUTO,
     width: 800,
     height: 600,
+    scale: {
+        autoCenter: Phaser.Scale.CENTER_BOTH
+    },
     physics: {
         default: 'arcade',
         arcade: {
             gravity: { y: 0},
-            debug: true
+            debug: false
         }
+        
     },
-    scene: [Scene1, Scene2]
+    scene: [Scene1, Scene3, Scene2]
 };
 
 var game = new Phaser.Game(config);
@@ -24,6 +28,7 @@ var colliders;
 var patron;
 var puntaje;
 var scoreText;
+var livesText;
 
 var timedEvent;
 var timedEvent2;
