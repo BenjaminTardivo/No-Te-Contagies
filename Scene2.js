@@ -10,12 +10,13 @@ class Scene2 extends Phaser.Scene {
         this.add.image(400, 300, 'backgorund');
         
         //personaje
-        player = this.physics.add.image(400, 300, 'jugador');
+        player = this.physics.add.image(400, 300, 'jugador').setSize(100, 450)
+        .setScale(0.15);
         player.setCollideWorldBounds(true);
         //creacion de los cursores
-        if (cursors =! undefined){
-            cursors = this.input.keyboard.createCursorKeys();
-        };
+       
+        cursors = this.input.keyboard.createCursorKeys();
+        
         //creacion de objetos y colliders con el personaje
         bads = this.physics.add.group();
         goods = this.physics.add.group();
@@ -33,11 +34,10 @@ class Scene2 extends Phaser.Scene {
         this.physics.add.collider(colliders, bads, this.badsErrase, null, this);
         this.physics.add.collider(colliders, goods, this.goodsErrase, null, this);
 
-        gameOver = false;
+        
         score = 0;
-        if (gameOver == false) {
+       
         timedEvent = this.time.addEvent({ delay: 1500, callback: this.timeEvent, callbackScope: this, loop: true });
-        }
 
         scoreText = this.add.text(16, 540, 'Inmunidad: ' + score + '/100%', { fontSize: '25px', fill: '#000', fontFamily: 'Arial'});
         livesText = this.add.text(650, 540, 'Vidas: ' + lives, { fontSize: '25px', fill: '#000', fontFamily: 'Arial'});
@@ -260,7 +260,6 @@ class Scene2 extends Phaser.Scene {
     }
 
     gameover(){
-        gameOver = true;
         this.physics.pause();
         timedEvent.paused = true;
         var gameOverText = this.add.text(400, 300, 'Te has contagiado...', { fontFamily: 'Arial', fontSize: 70, color: '#000' });
