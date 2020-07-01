@@ -33,4 +33,4 @@ var livesText;
 var timedEvent;
 var timedEvent2;
 var lives = 3;
-                   
+                                                                                        

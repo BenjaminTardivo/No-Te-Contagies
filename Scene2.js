@@ -39,8 +39,8 @@ class Scene2 extends Phaser.Scene {
        
         timedEvent = this.time.addEvent({ delay: 1500, callback: this.timeEvent, callbackScope: this, loop: true });
 
-        scoreText = this.add.text(16, 540, 'Inmunidad: ' + score + '/100%', { fontSize: '25px', fill: '#000', fontFamily: 'Arial'});
-        livesText = this.add.text(650, 540, 'Vidas: ' + lives, { fontSize: '25px', fill: '#000', fontFamily: 'Arial'});
+        scoreText = this.add.text(16, 16, 'Inmunidad: ' + score + '/100%', { fontSize: '25px', fill: '#000', fontFamily: 'Arial'});
+        livesText = this.add.text(16, 540, 'Vidas: ' + lives, { fontSize: '25px', fill: '#000', fontFamily: 'Arial'});
     }
 
     timeEvent(){
