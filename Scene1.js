@@ -7,7 +7,6 @@ preload ()
 {
     this.load.image('Menu', 'images/Menu.png');
     this.load.image('credits', 'images/creditos.png');
-    this.load.image('backgorund', 'images/background.png');
     this.load.image('jugador', 'images/Pj.png');
     this.load.image('boton-jugar', 'images/boton-jugar.png');
     this.load.image('bcreditos', 'images/bcreditos.png')
