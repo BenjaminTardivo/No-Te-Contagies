@@ -7,7 +7,7 @@ class Scene2 extends Phaser.Scene {
     create ()
     {
         //Fondo
-        this.add.image(400, 300, 'Menu');
+        this.add.image(400, 300, 'background');
         
         //personaje
         player = this.physics.add.image(400, 300, 'jugador').setSize(100, 450)
