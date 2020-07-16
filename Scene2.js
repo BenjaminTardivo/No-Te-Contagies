@@ -147,11 +147,13 @@ class Scene2 extends Phaser.Scene {
             .setSize(50, 50, true)
             .setScale(0.50)
             //child.score = 5
+            id = 0;
         }
         else{
             good.setTexture('jeringa')
             .setSize(50, 50, true)
             .setScale(0.40)
+            id = 1;
             //child.score = 10
         }
 
@@ -160,36 +162,42 @@ class Scene2 extends Phaser.Scene {
             .setSize(50, 50, true)
             .setScale(0.50)
             //child.score = 5
+            id = 0;
         }
         else{
             good2.setTexture('jeringa')
             .setSize(50, 50, true)
             .setScale(0.40)
             //child.score = 10
+            id = 1;
         }
 
         if (patron < 0.5){
             good3.setTexture('jabon').setSize(50, 50, true)
             .setScale(0.50)
             //child.score = 5
+            id = 0;
         }
         else{
             good3.setTexture('jeringa')
             .setSize(50, 50, true)
             .setScale(0.40)
             //child.score = 10
+            id = 1;
         }
 
         if (patron > 0.5){
             good4.setTexture('jabon').setSize(50, 50, true)
             .setScale(0.50)
             //child.score = 5
+            id = 0;
         }
         else{
             good4.setTexture('jeringa')
             .setSize(50, 50, true)
             .setScale(0.40)
             //child.score = 10
+            id = 1;
         }
     
 
@@ -241,8 +249,14 @@ class Scene2 extends Phaser.Scene {
     collectGoods(player, goods){
         goods.destroy()
         score += 5
-        console.log(score)
         scoreText.setText('Inmunidad: ' + score + '%/100%');
+        if (id == 1){
+            console.log("si")
+        }
+        else if (id == 0) {
+            console.log("no")
+        }
+
     }
 
     badsHit(player, bads){
