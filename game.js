@@ -29,8 +29,12 @@ var patron;
 var puntaje;
 var scoreText;
 var livesText;
+var corazones;
 
 var timedEvent;
 var timedEvent2;
 var lives = 3;
-var id                                                               
+var id1;
+var id2;
+var id3;    
+var id4;                                                                
