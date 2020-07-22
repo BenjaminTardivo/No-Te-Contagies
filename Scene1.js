@@ -17,9 +17,10 @@ preload ()
     this.load.image('bsalir','images/bsalir.png')
     this.load.image('collider', 'images/collider.png');
     this.load.image('collider2', 'images/collider2.png');
-    this.load.image('barro', 'images/barro.png')
-    this.load.image('jeringa', 'images/vacuna.png')
-    this.load.image('jabon', 'images/Jabon.png')
+    this.load.image('barro', 'images/barro.png');
+    this.load.image('jeringa', 'images/vacuna.png');
+    this.load.image('jabon', 'images/Jabon.png');
+    this.load.image('corazon', 'images/star.png');
 }
 
 create ()

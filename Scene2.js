@@ -34,13 +34,27 @@ class Scene2 extends Phaser.Scene {
         this.physics.add.collider(colliders, bads, this.badsErrase, null, this);
         this.physics.add.collider(colliders, goods, this.goodsErrase, null, this);
 
+
+
+
+
+
         
         score = 0;
        
         timedEvent = this.time.addEvent({ delay: 1500, callback: this.timeEvent, callbackScope: this, loop: true });
 
         scoreText = this.add.text(16, 16, 'Inmunidad: ' + score + '/100%', { fontSize: '25px', fill: '#000', fontFamily: 'Arial'});
-        livesText = this.add.text(16, 540, 'Vidas: ' + lives, { fontSize: '25px', fill: '#000', fontFamily: 'Arial'});
+        corazones = this.add.group({
+            key: 'corazon',
+            repeat: 2,
+            setXY:
+            {
+                x: 16,
+                y: 540,
+                stepX: 39
+            },
+        })
     }
 
     timeEvent(){
@@ -147,13 +161,13 @@ class Scene2 extends Phaser.Scene {
             .setSize(50, 50, true)
             .setScale(0.50)
             //child.score = 5
-            id = 0;
+            id1 = 0;
         }
         else{
             good.setTexture('jeringa')
             .setSize(50, 50, true)
             .setScale(0.40)
-            id = 1;
+            id1 = 1;
             //child.score = 10
         }
 
@@ -162,42 +176,42 @@ class Scene2 extends Phaser.Scene {
             .setSize(50, 50, true)
             .setScale(0.50)
             //child.score = 5
-            id = 0;
+            id2 = 0;
         }
         else{
             good2.setTexture('jeringa')
             .setSize(50, 50, true)
             .setScale(0.40)
             //child.score = 10
-            id = 1;
+            id2 = 1;
         }
 
         if (patron < 0.5){
             good3.setTexture('jabon').setSize(50, 50, true)
             .setScale(0.50)
             //child.score = 5
-            id = 0;
+            id3 = 0;
         }
         else{
             good3.setTexture('jeringa')
             .setSize(50, 50, true)
             .setScale(0.40)
             //child.score = 10
-            id = 1;
+            id3 = 1;
         }
 
         if (patron > 0.5){
             good4.setTexture('jabon').setSize(50, 50, true)
             .setScale(0.50)
             //child.score = 5
-            id = 0;
+            id4 = 0;
         }
         else{
             good4.setTexture('jeringa')
             .setSize(50, 50, true)
             .setScale(0.40)
             //child.score = 10
-            id = 1;
+            id4 = 1;
         }
     
 
@@ -250,10 +264,10 @@ class Scene2 extends Phaser.Scene {
         goods.destroy()
         score += 5
         scoreText.setText('Inmunidad: ' + score + '%/100%');
-        if (id == 1){
+        if (id1 == 1 || id2 == 1 || id3 == 1 || id4 == 1){
             console.log("si")
         }
-        else if (id == 0) {
+        else if (id1 == 0 || id2 == 0 || id3 == 0 || id4 == 0){
             console.log("no")
         }
 
@@ -262,7 +276,15 @@ class Scene2 extends Phaser.Scene {
     badsHit(player, bads){
         bads.destroy()
         lives --
-        livesText.setText('vidas: ' + lives);
+        
+        if (lives > -1){
+            // Se quita un corazón cada vez que se choca con una rata:
+                var chau = corazones.getChildren()[corazones.getChildren().length -1]
+
+                if (chau !== undefined){
+                chau.destroy()
+                }
+        }
     }
 
     badsErrase(collider, bads){
