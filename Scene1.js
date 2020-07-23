@@ -20,7 +20,9 @@ preload ()
     this.load.image('barro', 'images/barro.png');
     this.load.image('jeringa', 'images/vacuna.png');
     this.load.image('jabon', 'images/Jabon.png');
-    this.load.image('corazon', 'images/star.png');
+    this.load.image('corazon', 'images/corazonzon.jpg');
+
+
 }
 
 create ()
