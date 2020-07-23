@@ -8,6 +8,7 @@ preload ()
     this.load.image('Menu', 'images/Menu.png');
     this.load.image('background', 'images/background.png');
     this.load.image('credits', 'images/creditos.png');
+    this.load.image('backgorund', 'images/background.png');
     this.load.spritesheet('jugador', 'spritesheets/spritesheet pj.png', {
         frameHeight: 491,
         frameWidth: 298
