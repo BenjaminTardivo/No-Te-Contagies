@@ -17,13 +17,13 @@ class Scene2 extends Phaser.Scene {
        
         cursors = this.input.keyboard.createCursorKeys();
         
-        //creacion de objetos y colliders con el personaje
+        //creacion de objetos y colliders 
         bads = this.physics.add.group();
         goods = this.physics.add.group();
 
         this.physics.add.collider(player, bads, this.badsHit, null, this);
         this.physics.add.collider(player, goods, this.collectGoods, null, this);
-        //creacion de colliders
+
         colliders = this.physics.add.staticGroup();
 
         colliders.create(-60, 300, 'collider');
@@ -34,17 +34,20 @@ class Scene2 extends Phaser.Scene {
         this.physics.add.collider(colliders, bads, this.badsErrase, null, this);
         this.physics.add.collider(colliders, goods, this.goodsErrase, null, this);
 
-
-
-
-
-
-        
+        //seteamos el puntaje en 0
         score = 0;
-       
+        //creacion el evento para la generacion de objetos
         timedEvent = this.time.addEvent({ delay: 1500, callback: this.timeEvent, callbackScope: this, loop: true });
+        //creacion la barra de inmunidad
+        
+        progressBox = this.add.graphics();
+        progressBar = this.add.graphics();
+        progressBox.fillStyle(0x222222, 0.8);
+        progressBox.fillRect(16, 16, 206, 25);
 
-        scoreText = this.add.text(16, 16, 'Inmunidad: ' + score + '/100%', { fontSize: '25px', fill: '#000', fontFamily: 'Arial'});
+        progressBar.clear();
+        progressBar.fillStyle(0xffffff, 1);
+        //creacion de los corazones
         corazones = this.add.group({
             key: 'corazon',
             repeat: 2,
@@ -54,9 +57,16 @@ class Scene2 extends Phaser.Scene {
                 y: 540,
                 stepX: 39
             },
+            setScale:
+            {
+                x: 0.25,
+                y: 0.25,
+            }
         })
+
     }
 
+    //funcion para randomizar los objetos
     timeEvent(){
         var GorE = Phaser.Math.FloatBetween(0, 1);
 
@@ -69,6 +79,7 @@ class Scene2 extends Phaser.Scene {
 
     }
 
+    //funcion para aparicion de objetos malos
     badies(){
         var x =  Phaser.Math.Between(0, 800);
         var x2 =  Phaser.Math.Between(0, 800);
@@ -130,7 +141,7 @@ class Scene2 extends Phaser.Scene {
             .setScale(0.5);
         };
 
-
+        //seteamos las velocidades de los objetos
         bad.setVelocityY (200);
         bad2.setVelocityX (200);
         bad3.setVelocityX (-200);
@@ -140,7 +151,7 @@ class Scene2 extends Phaser.Scene {
 
 
     }
-
+    //funcion para aparicion de objetos buenos
     goodies(){
 
 
@@ -217,7 +228,7 @@ class Scene2 extends Phaser.Scene {
 
 
 
-
+        //seteamos las velocidades de los objetos
         good.setVelocityY(200);
         good2.setVelocityX(200);
         good3.setVelocityY(-200);
@@ -257,20 +268,17 @@ class Scene2 extends Phaser.Scene {
                if(score == 100){
                    this.lvlfinish()
                }
+
+
+
+
           
 
     }
     collectGoods(player, goods){
         goods.destroy()
         score += 5
-        scoreText.setText('Inmunidad: ' + score + '%/100%');
-        if (id1 == 1 || id2 == 1 || id3 == 1 || id4 == 1){
-            console.log("si")
-        }
-        else if (id1 == 0 || id2 == 0 || id3 == 0 || id4 == 0){
-            console.log("no")
-        }
-
+        progressBar.fillRect(19, 19, 2 * score, 19);
     }
 
     badsHit(player, bads){
@@ -278,7 +286,7 @@ class Scene2 extends Phaser.Scene {
         lives --
         
         if (lives > -1){
-            // Se quita un corazón cada vez que se choca con una rata:
+            // Se quita un corazón cada vez que se choca con un objeto malo
                 var chau = corazones.getChildren()[corazones.getChildren().length -1]
 
                 if (chau !== undefined){

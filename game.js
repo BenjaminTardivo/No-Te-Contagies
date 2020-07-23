@@ -27,14 +27,12 @@ var goods;
 var colliders;
 var patron;
 var puntaje;
-var scoreText;
-var livesText;
 var corazones;
+var progressBar;
+var progressBox;
+
 
 var timedEvent;
 var timedEvent2;
 var lives = 3;
-var id1;
-var id2;
-var id3;    
-var id4;                                                                
+                                                               
