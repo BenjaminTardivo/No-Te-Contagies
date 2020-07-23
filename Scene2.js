@@ -172,13 +172,13 @@ class Scene2 extends Phaser.Scene {
             .setSize(50, 50, true)
             .setScale(0.50)
             //child.score = 5
-            id1 = 0;
+            
         }
         else{
             good.setTexture('jeringa')
             .setSize(50, 50, true)
             .setScale(0.40)
-            id1 = 1;
+            
             //child.score = 10
         }
 
@@ -187,42 +187,42 @@ class Scene2 extends Phaser.Scene {
             .setSize(50, 50, true)
             .setScale(0.50)
             //child.score = 5
-            id2 = 0;
+            
         }
         else{
             good2.setTexture('jeringa')
             .setSize(50, 50, true)
             .setScale(0.40)
             //child.score = 10
-            id2 = 1;
+            
         }
 
         if (patron < 0.5){
             good3.setTexture('jabon').setSize(50, 50, true)
             .setScale(0.50)
             //child.score = 5
-            id3 = 0;
+            
         }
         else{
             good3.setTexture('jeringa')
             .setSize(50, 50, true)
             .setScale(0.40)
             //child.score = 10
-            id3 = 1;
+            
         }
 
         if (patron > 0.5){
             good4.setTexture('jabon').setSize(50, 50, true)
             .setScale(0.50)
             //child.score = 5
-            id4 = 0;
+            
         }
         else{
             good4.setTexture('jeringa')
             .setSize(50, 50, true)
             .setScale(0.40)
             //child.score = 10
-            id4 = 1;
+            
         }
     
 
