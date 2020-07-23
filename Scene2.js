@@ -10,9 +10,42 @@ class Scene2 extends Phaser.Scene {
         this.add.image(400, 300, 'backgorund');
         
         //personaje
-        player = this.physics.add.image(400, 300, 'jugador').setSize(100, 450)
+        player = this.physics.add.sprite(400, 300, 'jugador').setSize(100, 450)
         .setScale(0.15);
         player.setCollideWorldBounds(true);
+        //animaciones del personaje
+        this.anims.create({
+            key: "up",
+            frames: this.anims.generateFrameNumbers('jugador', { start: 0, end :4}),
+            framerate: 10,
+            repeat: 0
+        });
+
+        this.anims.create({
+            key: "down",
+            frames: this.anims.generateFrameNumbers('jugador', { start: 5, end :9}),
+            framerate: 10,
+            repeat: 0
+        });
+
+        this.anims.create({
+            key: "right",
+            frames: this.anims.generateFrameNumbers('jugador', { start: 10, end :15}),
+            framerate: 10,
+            repeat: 0
+        });
+        this.anims.create({
+            key: "left",
+            frames: this.anims.generateFrameNumbers('jugador', { start: 16, end :21}),
+            framerate: 10,
+            repeat: 0
+        });
+        this.anims.create({
+            key: "stop",
+            frames: [ { key: 'jugador', frame: 5 } ],
+            framerate: 10,
+            repeat: 0
+        });
         //creacion de los cursores
        
         cursors = this.input.keyboard.createCursorKeys();
@@ -241,33 +274,43 @@ class Scene2 extends Phaser.Scene {
     update ()
     {
         if (cursors.left.isDown) {
-        player.setVelocityX(-220)}
+        player.setVelocityX(-220);
+        
+        player.anims.play('left', true);
+    }
         
         else if (cursors.right.isDown) {
-            player.setVelocityX(220)
+            player.setVelocityX(220);
+
+            player.anims.play('right', true);
         }
         else {
             player.setVelocityX(0)
         }
 
         if (cursors.down.isDown) {
-            player.setVelocityY(220)}
+            player.setVelocityY(220);
+
+            player.anims.play('down', true);
+        }
             
             else if (cursors.up.isDown) {
-                player.setVelocityY(-220)
+                player.setVelocityY(-220);
+
+                player.anims.play('up', true);
             }
             else {
                 player.setVelocityY(0)
             }
 
 
-               if (lives <= 0){
-                   this.gameover()
-               }
+        if (lives <= 0){
+            this.gameover()
+        }
 
-               if(score == 100){
-                   this.lvlfinish()
-               }
+        if(score == 100){
+            this.lvlfinish()
+        }
 
 
 
@@ -305,6 +348,7 @@ class Scene2 extends Phaser.Scene {
 
     gameover(){
         this.physics.pause();
+        player.anims.play('stop');
         timedEvent.paused = true;
         var gameOverText = this.add.text(400, 300, 'Te has contagiado...', { fontFamily: 'Arial', fontSize: 70, color: '#000' });
         var bretry = this.add.image(300, 350, 'breintentar').setScale(0.56)
@@ -321,6 +365,7 @@ class Scene2 extends Phaser.Scene {
 
     lvlfinish(){
         this.physics.pause();
+        player.anims.play('stop');
         timedEvent.paused = true;
 
         var lvlcomplete = this.add.text(400, 300, '¡Nivel Superado!', {fontFamily: 'Arial', fontSize: 70, color: '#000'})
