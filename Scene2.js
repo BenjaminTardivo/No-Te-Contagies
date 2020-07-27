@@ -7,7 +7,7 @@ class Scene2 extends Phaser.Scene {
     create ()
     {
         //Fondo
-        this.add.image(400, 300, 'backgorund');
+        this.add.image(400, 300, 'background');
         
         //personaje
         player = this.physics.add.sprite(400, 300, 'jugador').setSize(100, 450)
@@ -70,7 +70,7 @@ class Scene2 extends Phaser.Scene {
         //seteamos el puntaje en 0
         score = 0;
         //creacion el evento para la generacion de objetos
-        timedEvent = this.time.addEvent({ delay: 1500, callback: this.timeEvent, callbackScope: this, loop: true });
+        timedEvent = this.time.addEvent({ delay: 2000, callback: this.timeEvent, callbackScope: this, loop: true });
         //creacion la barra de inmunidad
         
         progressBox = this.add.graphics();
@@ -200,62 +200,88 @@ class Scene2 extends Phaser.Scene {
         var good4 = goods.create(800, Y2, 'player');
 
 
-        if (patron < 0.5){
+        if (patron <= 0.25){
             good.setTexture('jabon')
             .setSize(50, 50, true)
             .setScale(0.50)
-            //child.score = 5
-            
+        }
+        else if (patron > 0.25 && patron <= 0.35){
+            good.setTexture('jeringa')
+            .setSize(1500, 1000, true)
+            .setScale(0.40)
+        }
+        else if (patron > 0.35 && patron <= 0.75){
+            good.setTexture('barbijo')
+            .setScale(0.03)
+            .setSize(800, 500)
         }
         else{
-            good.setTexture('jeringa')
-            .setSize(50, 50, true)
-            .setScale(0.40)
-            
-            //child.score = 10
+            good.setTexture('alcohol')
+            .setScale(0.09)
+            .setSize(200, 400, true)
         }
 
-        if (patron > 0.5){
+        if (patron <= 0.25){
             good2.setTexture('jabon')
             .setSize(50, 50, true)
             .setScale(0.50)
-            //child.score = 5
-            
         }
-        else{
+        else if (patron > 0.25 && patron <= 0.35){
             good2.setTexture('jeringa')
-            .setSize(50, 50, true)
+            .setSize(1500, 1000, true)
             .setScale(0.40)
-            //child.score = 10
-            
         }
-
-        if (patron < 0.5){
-            good3.setTexture('jabon').setSize(50, 50, true)
-            .setScale(0.50)
-            //child.score = 5
-            
+        else if (patron > 0.35 && patron <= 0.75){
+            good2.setTexture('barbijo')
+            .setScale(0.03)
+            .setSize(800, 500)
         }
         else{
+            good2.setTexture('alcohol')
+            .setScale(0.09)
+            .setSize(200, 400, true)
+        }
+
+        if (patron <= 0.25){
+            good3.setTexture('jabon')
+            .setSize(50, 50, true)
+            .setScale(0.50)
+        }
+        else if (patron > 0.25 && patron <= 0.35){
             good3.setTexture('jeringa')
-            .setSize(50, 50, true)
+            .setSize(1500, 1000, true)
             .setScale(0.40)
-            //child.score = 10
-            
         }
-
-        if (patron > 0.5){
-            good4.setTexture('jabon').setSize(50, 50, true)
-            .setScale(0.50)
-            //child.score = 5
-            
+        else if (patron > 0.35 && patron <= 0.75){
+            good3.setTexture('barbijo')
+            .setScale(0.03)
+            .setSize(800, 500)
         }
         else{
-            good4.setTexture('jeringa')
+            good3.setTexture('alcohol')
+            .setScale(0.09)
+            .setSize(200, 400, true)
+        }
+
+        if (patron <= 0.25){
+            good4.setTexture('jabon')
             .setSize(50, 50, true)
+            .setScale(0.50)
+        }
+        else if (patron > 0.25 && patron <= 0.35){
+            good4.setTexture('jeringa')
+            .setSize(1500, 1000, true)
             .setScale(0.40)
-            //child.score = 10
-            
+        }
+        else if (patron > 0.35 && patron <= 0.75){
+            good4.setTexture('barbijo')
+            .setScale(0.03)
+            .setSize(800, 500)
+        }
+        else{
+            good4.setTexture('alcohol')
+            .setScale(0.09)
+            .setSize(200, 400, true)
         }
     
 
@@ -320,8 +346,9 @@ class Scene2 extends Phaser.Scene {
     }
     collectGoods(player, goods){
         goods.destroy()
-        score += 5
+        score+= 0
         progressBar.fillRect(19, 19, 2 * score, 19);
+        console.log(score)
     }
 
     badsHit(player, bads){

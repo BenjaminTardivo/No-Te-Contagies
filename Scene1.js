@@ -6,6 +6,7 @@ constructor() {
 preload ()
 {
     this.load.image('Menu', 'images/Menu.png');
+    this.load.image('background', 'images/background.png');
     this.load.image('credits', 'images/creditos.png');
     this.load.image('backgorund', 'images/background.png');
     this.load.spritesheet('jugador', 'spritesheets/spritesheet pj.png', {
@@ -23,6 +24,8 @@ preload ()
     this.load.image('barro', 'images/barro.png');
     this.load.image('jeringa', 'images/vacuna.png');
     this.load.image('jabon', 'images/Jabon.png');
+    this.load.image('alcohol', 'images/Alcohol.png');
+    this.load.image('barbijo', 'images/Barbijo.png');
     this.load.image('corazon', 'images/corazonzon.jpg');
 
 
