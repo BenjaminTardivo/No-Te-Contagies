@@ -8,3 +8,4 @@ septimo commit: se añadieron las pantalas de nivel perdido/superado y los boton
 octavo commit: Se cambiaron las ubicaciones de las vidas y la inmunidad
 noveno commit: Se cambio el texto de las vidas por corazones y el texto de inmunidad por una barra
 decimo commit: Se agregaron animaciondes del personaje
+commit once: se agregaron barbijo y alcohol en gel

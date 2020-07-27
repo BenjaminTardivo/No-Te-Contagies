@@ -24,6 +24,8 @@ preload ()
     this.load.image('barro', 'images/barro.png');
     this.load.image('jeringa', 'images/vacuna.png');
     this.load.image('jabon', 'images/Jabon.png');
+    this.load.image('alcohol', 'images/Alcohol.png');
+    this.load.image('barbijo', 'images/Barbijo.png');
     this.load.image('corazon', 'images/corazonzon.jpg');
 
 
