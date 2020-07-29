@@ -11,14 +11,15 @@ var config = {
             gravity: { y: 0},
             debug: false
         }
-        
     },
-    scene: [Scene1, Scene3, Scene2]
+    scene: [scene1, scene2, scene3, scene4, scene5, scene6]
 };
 
 var game = new Phaser.Game(config);
-var gameOver;
+var lives = 3;  
 
+var timedEvent;
+var timedEvent2;
 var player;
 var score;
 var cursors;
@@ -30,9 +31,14 @@ var puntaje;
 var corazones;
 var progressBar;
 var progressBox;
-
-
-var timedEvent;
-var timedEvent2;
-var lives = 3;
-                                                               
+var vacunas;
+var barbijos;
+var arboles;
+var fuente;
+var contvac;
+var velX;
+var velY;
+var velX2;
+var velY2;
+var iobject;
+var i;                
