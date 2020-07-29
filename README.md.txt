@@ -8,4 +8,4 @@ septimo commit: se añadieron las pantalas de nivel perdido/superado y los boton
 octavo commit: Se cambiaron las ubicaciones de las vidas y la inmunidad
 noveno commit: Se cambio el texto de las vidas por corazones y el texto de inmunidad por una barra
 decimo commit: Se agregaron animaciondes del personaje
-commit once: se agregaron barbijo y alcohol en gel
+decimprimer commit: Se agregó el segundo nivel, además de algunos objetos buenos como el alcohol en gel. Se modificó el respawn de la vacuna, haciendo que aparezca una sola vez por nivel. También se agregó la función para el aumento de velocidad del personaje por 10 segundos luego de agarrarla.
