@@ -4,7 +4,7 @@ constructor() {
 }
 
 preload(){
-    this.load.image('menu', 'images/Menu.png');
+    this.load.image('menu', 'images/menu.png');
     this.load.image('ayuda', 'images/ayuda.png');
     this.load.image('controles', 'images/controles.png');
     this.load.image('background', 'images/background.png');
@@ -37,9 +37,9 @@ preload(){
     this.load.image('collider2', 'images/collider2.png');
     this.load.image('barro', 'images/barro.png');
     this.load.image('jeringa', 'images/vacuna.png');
-    this.load.image('jabon', 'images/Jabon.png');
-    this.load.image('alcohol', 'images/Alcohol.png');
-    this.load.image('barbijo', 'images/Barbijo.png');
+    this.load.image('jabon', 'images/jabon.png');
+    this.load.image('alcohol', 'images/alcohol.png');
+    this.load.image('barbijo', 'images/barbijo.png');
     this.load.image('corazon', 'images/corazon.png');
     this.load.image('falcohol', 'images/falcohol.png');
     this.load.image('fbarbijo', 'images/fbarbijo.png');
