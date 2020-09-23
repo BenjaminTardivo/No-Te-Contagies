@@ -194,7 +194,6 @@ class scene3 extends Phaser.Scene {
     x2 = Phaser.Math.Between(0, 800);
     y = Phaser.Math.Between(0, 600);
     y2 = Phaser.Math.Between(0, 600);
-    console.log(patron);
 
     if (GorE <= porcentaje) {
       this.badies();
@@ -205,6 +204,14 @@ class scene3 extends Phaser.Scene {
 
   //funcion para aparicion de objetos malos
   badies() {
+    if (nivel == 1){
+        bads
+          .create(x, 0, "virus")
+          .setVelocityY(200)
+          .setSize(500, 500, true)
+          .setScale(0.06);
+    }    
+    else if (nivel == 2){
     if (patron <= 0.5) {
       bads
         .create(x, 0, "barro")
@@ -218,7 +225,15 @@ class scene3 extends Phaser.Scene {
         .setSize(500, 500, true)
         .setScale(0.06);
     }
-
+  }
+    if (nivel == 1){
+      bads
+      .create(0, y, "virus")
+      .setVelocityX(200)
+      .setSize(500, 500, true)
+      .setScale(0.06);
+    }
+    if (nivel == 2){
     if (patron <= 0.5) {
       bads
         .create(0, y, "virus")
@@ -232,7 +247,15 @@ class scene3 extends Phaser.Scene {
         .setSize(500, 500, true)
         .setScale(0.06);
     }
-
+  }
+    if (nivel == 1){
+      bads
+      .create(800, y2, "virus")
+      .setVelocityX(-200)
+      .setSize(500, 500, true)
+      .setScale(0.06);
+    }
+    else if (nivel == 2){
     if (patron <= 0.5) {
       bads
         .create(800, y2, "barro")
@@ -246,7 +269,15 @@ class scene3 extends Phaser.Scene {
         .setSize(500, 500, true)
         .setScale(0.06);
     }
-
+  }
+    if (nivel == 1){
+      bads
+      .create(x2, 600, "virus")
+      .setVelocityY(-200)
+      .setSize(500, 500, true)
+      .setScale(0.06);
+    }
+    else if(nivel == 2){
     if (patron <= 0.5) {
       bads
         .create(x2, 600, "virus")
@@ -260,6 +291,7 @@ class scene3 extends Phaser.Scene {
         .setSize(500, 500, true)
         .setScale(0.06);
     }
+  }
   }
 
   //funcion para aparicion de objetos buenos
