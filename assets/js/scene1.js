@@ -7,24 +7,24 @@ class scene1 extends Phaser.Scene {
 
   //Realizamos la precarga de assets (imágenes, spritesheets, etc) definiendo un nombre a cada uno, seguido de la ruta donde este se encuentra.
   preload() {
-    this.load.image("menu", "/assets/images/menus/menu.png");
-    this.load.image("ayuda", "/assets/images/menus/ayuda.png");
+    this.load.image("menu", "./assets/images/menus/menu.png");
+    this.load.image("ayuda", "./assets/images/menus/ayuda.png");
     this.load.image("ayuda2", "/assets/images/menus/ayuda2.png");
-    this.load.image("selector", "/assets/images/menus/selector.png");
-    this.load.image("controles", "/assets/images/menus/controles.png");
-    this.load.image("controles2", "/assets/images/menus/controles2.png");
-    this.load.image("tienda", "/assets/images/menus/tienda.png");
-    this.load.image("opciones", "/assets/images/menus/opciones.png");
-    this.load.image("opciones2", "/assets/images/menus/opciones2.png");
-    this.load.image("background", "/assets/images/backgrounds/background.png");
-    this.load.image("background2", "/assets/images/backgrounds/background2.png");
-    this.load.image("nsuperado", "/assets/images/menus/nsuperado.png");
-    this.load.image("nperdido", "/assets/images/menus/nperdido.png");
-    this.load.image("arbol", "/assets/images/objects/arbol.png");
-    this.load.image("arbol2", "/assets/images/objects/arbol2.png");
-    this.load.image("fuente", "/assets/images/objects/fuente.png");
-    this.load.image("credits", "/assets/images/menus/creditos.png");
-    this.load.image("pause", "/assets/images/menus/pausa.png");
+    this.load.image("selector", "./assets/images/menus/selector.png");
+    this.load.image("controles", "./assets/images/menus/controles.png");
+    this.load.image("controles2", "./assets/images/menus/controles2.png");
+    this.load.image("tienda", "./assets/images/menus/tienda.png");
+    this.load.image("opciones", "./assets/images/menus/opciones.png");
+    this.load.image("opciones2", "./assets/images/menus/opciones2.png");
+    this.load.image("background", "./assets/images/backgrounds/background.png");
+    this.load.image("background2", "./assets/images/backgrounds/background2.png");
+    this.load.image("nsuperado", "./assets/images/menus/nsuperado.png");
+    this.load.image("nperdido", "./assets/images/menus/nperdido.png");
+    this.load.image("arbol", "./assets/images/objects/arbol.png");
+    this.load.image("arbol2", "./assets/images/objects/arbol2.png");
+    this.load.image("fuente", "./assets/images/objects/fuente.png");
+    this.load.image("credits", "./assets/images/menus/creditos.png");
+    this.load.image("pause", "./assets/images/menus/pausa.png");
     this.load.spritesheet("jugador", "/assets/images/objects/player.png", {
       //Indicamos el alto y ancho (en píxeles) de cada frame que compone el spritesheet.
       frameHeight: 491,
