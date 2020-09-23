@@ -69,28 +69,69 @@ class scene3 extends Phaser.Scene {
       repeat: 0,
     });
 
+    if (nivel >= 2) {
+      this.anims.create({
+        key: "up2", //Definimos nombre a la animación.
+        frames: this.anims.generateFrameNumbers("jugador2", {
+          start: 0,
+          end: 4,
+        }), //definimos los frames que abarca.
+        framerate: 10, //velocidad de frames/frames por segundo.
+        repeat: 0, //cuantas veces se repite (0 = infinitamente).
+      });
+      this.anims.create({
+        key: "down2",
+        frames: this.anims.generateFrameNumbers("jugador2", {
+          start: 5,
+          end: 9,
+        }),
+        framerate: 10,
+        repeat: 0,
+      });
+      this.anims.create({
+        key: "right2",
+        frames: this.anims.generateFrameNumbers("jugador2", {
+          start: 10,
+          end: 15,
+        }),
+        framerate: 10,
+        repeat: 0,
+      });
+      this.anims.create({
+        key: "left2",
+        frames: this.anims.generateFrameNumbers("jugador2", {
+          start: 16,
+          end: 21,
+        }),
+        framerate: 10,
+        repeat: 0,
+      });
+      this.anims.create({
+        key: "stop2",
+        frames: [{ key: "jugador2", frame: 5 }],
+        framerate: 10,
+        repeat: 0,
+      });
+    }
+
     //creacion de los controles.
     cursors = this.input.keyboard.createCursorKeys();
 
     //creacion de objetos y colliders.
     bads = this.physics.add.group(); //grupo de objetos malos (contienen físicas).
     goods = this.physics.add.group(); //grupo de objetos buenos (contienen físicas).
+    goods2 = this.physics.add.group(); //grupo de objetos buenos (contienen físicas).
     vacunas = this.physics.add.group(); //grupo de vacunas, porque tiene que comportarse diferente que los demás objetos buenos por el boost que otorga (contienen físicas).
     barbijos = this.physics.add.group(); //grupo de barbijos, por el mismo motivo anterior (se comportará un tanto diferente a los demás objetos buenos). (Contienen físicas).
 
-    this.physics.add.collider(player, bads, this.badsHit, null, this); //collider que ejecuta la función "badHit" cuando el jugador choca con un objeto malo (línea 297).
-    this.physics.add.collider(player, goods, this.collectGoods, null, this); //collider que ejecuta la función "collectGoods" cuando el jugador choca con un objeto bueno (línea 291).
-    this.physics.add.collider(
-      player,
-      barbijos,
-      this.collectBarbijo,
-      null,
-      this
-    ); //collider que ejecuta la función "collectGoods" cuando el jugador choca con un barbijo (línea 291).
+    this.physics.add.overlap(player, bads, this.badsHit, null, this); //collider que ejecuta la función "badHit" cuando el jugador choca con un objeto malo (línea 297).
+    this.physics.add.overlap(player, goods, this.collectGoods, null, this); //collider que ejecuta la función "collectGoods" cuando el jugador choca con un objeto bueno (línea 291).
+    this.physics.add.overlap(player, goods2, this.collectGoods2, null, this); //collider que ejecuta la función "collectGoods" cuando el jugador choca con un objeto bueno (línea 291).
+    this.physics.add.overlap(player, barbijos, this.collectBarbijo, null, this); //collider que ejecuta la función "collectGoods" cuando el jugador choca con un barbijo (línea 291).
     //El escudo de inmunidad por unos segundos que otorgaría el barbijo TODAVIA NO SE PROGRAMÓ (estructura formada para futura funcionalidad).
 
     //collider que ejecutan la función de boost de velocidad por 10s.
-    this.physics.add.collider(player, vacunas, this.vacunado, null, this);
+    this.physics.add.overlap(player, vacunas, this.vacunado, null, this);
 
     colliders = this.physics.add.staticGroup(); // creamos un grupo de objetos que funcionarán como colliders para la eliminación de objetos una vez salidos de la pantalla.
     //seteamos donde se creará (puntos 'x' e 'y'), seguido del nombre del asset (definido en la escena "game.js").
@@ -122,6 +163,7 @@ class scene3 extends Phaser.Scene {
 
     this.physics.add.collider(colliders, bads, this.badsErrase, null, this); //collider que ejecuta la función "badsErrase" cuando un objeto malo choca con un collider (línea 312).
     this.physics.add.collider(colliders, goods, this.goodsErrase, null, this); //collider que ejecuta la función "goodsErrase" cuando un objeto bueno choca con un collider (línea 316).
+    this.physics.add.collider(colliders, goods2, this.goodsErrase, null, this); //collider que ejecuta la función "goodsErrase" cuando un objeto bueno choca con un collider (línea 316).
     this.physics.add.collider(
       colliders,
       vacunas,
@@ -183,7 +225,7 @@ class scene3 extends Phaser.Scene {
       porcentaje = 0.5;
     } else if (nivel == 2) {
       porcentaje == 0.55;
-    }  
+    }
   }
 
   //funcion para randomizar los objetos
@@ -204,87 +246,55 @@ class scene3 extends Phaser.Scene {
 
   //funcion para aparicion de objetos malos
   badies() {
-    if (nivel == 1){
-        bads
-          .create(x, 0, "virus")
-          .setVelocityY(200)
-          .setSize(500, 500, true)
-          .setScale(0.06);
-    }    
-    else if (nivel == 2){
-    if (patron <= 0.5) {
+    if (patron <= 0.5 && nivel > 1) {
       bads
         .create(x, 0, "barro")
         .setVelocityY(200)
         .setSize(500, 500, true)
         .setScale(0.06);
-    } else if (patron > 0.5) {
+    } else if (patron > 0.5 || nivel == 1) {
       bads
         .create(x, 0, "virus")
         .setVelocityY(200)
         .setSize(500, 500, true)
         .setScale(0.06);
     }
-  }
-    if (nivel == 1){
-      bads
-      .create(0, y, "virus")
-      .setVelocityX(200)
-      .setSize(500, 500, true)
-      .setScale(0.06);
-    }
-    if (nivel == 2){
-    if (patron <= 0.5) {
+
+    if (patron <= 0.5 || nivel == 1) {
       bads
         .create(0, y, "virus")
         .setVelocityX(200)
         .setSize(500, 500, true)
         .setScale(0.06);
-    } else if (patron > 0.5) {
+    } else if (patron > 0.5 && nivel > 1) {
       bads
         .create(0, y, "barro")
         .setVelocityX(200)
         .setSize(500, 500, true)
         .setScale(0.06);
     }
-  }
-    if (nivel == 1){
-      bads
-      .create(800, y2, "virus")
-      .setVelocityX(-200)
-      .setSize(500, 500, true)
-      .setScale(0.06);
-    }
-    else if (nivel == 2){
-    if (patron <= 0.5) {
+
+    if (patron <= 0.5 && nivel > 1) {
       bads
         .create(800, y2, "barro")
         .setVelocityX(-200)
         .setSize(500, 500, true)
         .setScale(0.06);
-    } else if (patron > 0.5) {
+    } else if (patron > 0.5 || nivel == 1) {
       bads
         .create(800, y2, "virus")
         .setVelocityX(-200)
         .setSize(500, 500, true)
         .setScale(0.06);
     }
-  }
-    if (nivel == 1){
-      bads
-      .create(x2, 600, "virus")
-      .setVelocityY(-200)
-      .setSize(500, 500, true)
-      .setScale(0.06);
-    }
-    else if(nivel == 2){
-    if (patron <= 0.5) {
+
+    if (patron <= 0.5 || nivel == 1) {
       bads
         .create(x2, 600, "virus")
         .setVelocityY(-200)
         .setSize(500, 500, true)
         .setScale(0.06);
-    } else if (patron > 0.5) {
+    } else if (patron > 0.5 && nivel > 1) {
       bads
         .create(x2, 600, "barro")
         .setVelocityY(-200)
@@ -292,16 +302,15 @@ class scene3 extends Phaser.Scene {
         .setScale(0.06);
     }
   }
-  }
 
   //funcion para aparicion de objetos buenos
   goodies() {
-    if (patron >= 0.2) {
-      goods
-        .create(x, 0, "jabon")
+    if (patron >= 0.6 && nivel == 3) {
+      goods2
+        .create(x, 0, "alcohol")
         .setVelocityY(200)
-        .setSize(750, 450, true)
-        .setScale(0.05);
+        .setSize(200, 400, true)
+        .setScale(0.11);
     } else if (patron < 0.1 && contvac == 0) {
       vacunas
         .create(x, 0, "jeringa")
@@ -310,17 +319,23 @@ class scene3 extends Phaser.Scene {
         .setSize(750, 350, true)
         .setScale(0.08);
       contvac++;
-    } else if (patron > 0.1 && patron < 0.2 && nivel !== 1) {
+    } else if (patron > 0.1 && patron < 0.2 && nivel !== 1 && stopAnim == "stop") {
       barbijos
         .create(x, 0, "barbijo")
         .setVelocityY(200)
         .setOrigin(0.9, 0.1)
         .setSize(1000, 750, true)
         .setScale(0.035);
+    } else if ((patron >= 0.2 && patron < 0.6) || nivel !== 3) {
+      goods
+        .create(x, 0, "jabon")
+        .setVelocityY(200)
+        .setSize(750, 450, true)
+        .setScale(0.05);
     }
 
-    if (patron >= 0.2) {
-      goods
+    if (patron >= 0.2 && patron < 0.6 && nivel == 3) {
+      goods2
         .create(0, y, "alcohol")
         .setVelocityX(200)
         .setSize(200, 400, true)
@@ -333,21 +348,27 @@ class scene3 extends Phaser.Scene {
         .setSize(750, 350, true)
         .setScale(0.08);
       contvac++;
-    } else if (patron < 0.1 && nivel !== 1) {
+    } else if (patron < 0.1 && nivel !== 1 && stopAnim == "stop") {
       barbijos
         .create(0, y, "barbijo")
         .setVelocityX(200)
         .setOrigin(0.9, 0.1)
         .setSize(1000, 750, true)
         .setScale(0.035);
-    }
-
-    if (patron >= 0.1 && patron <= 0.9) {
+    } else if (patron >= 0.6 || nivel !== 3) {
       goods
-        .create(800, y2, "jabon")
-        .setVelocityX(-200)
+        .create(0, y, "jabon")
+        .setVelocityX(200)
         .setSize(750, 450, true)
         .setScale(0.05);
+    }
+
+    if (patron >= 0.5 && patron < 0.9 && nivel == 3) {
+      goods2
+        .create(800, y2, "alcohol")
+        .setVelocityX(-200)
+        .setSize(200, 400, true)
+        .setScale(0.11);
     } else if (patron < 0.1 && contvac == 0) {
       vacunas
         .create(800, y2, "jeringa")
@@ -356,17 +377,23 @@ class scene3 extends Phaser.Scene {
         .setSize(750, 350, true)
         .setScale(0.03);
       contvac++;
-    } else if (patron > 0.9 && nivel !== 1) {
+    } else if (patron > 0.9 && nivel !== 1 && stopAnim == "stop") {
       barbijos
         .create(800, y2, "barbijo")
         .setVelocityX(-200)
         .setOrigin(0.9, 0.1)
         .setSize(1000, 750, true)
         .setScale(0.035);
+    } else if ((patron >= 0.1 && patron <= 0.5) || nivel !== 3) {
+      goods
+        .create(800, y2, "jabon")
+        .setVelocityX(-200)
+        .setSize(750, 450, true)
+        .setScale(0.05);
     }
 
-    if (patron <= 0.8) {
-      goods
+    if (patron <= 0.4 && nivel == 3) {
+      goods2
         .create(x2, 600, "alcohol")
         .setVelocityY(-200)
         .setSize(200, 400, true)
@@ -379,13 +406,19 @@ class scene3 extends Phaser.Scene {
         .setSize(750, 350, true)
         .setScale(0.08);
       contvac++;
-    } else if (patron > 0.8 && patron <= 0.9 && nivel !== 1) {
+    } else if (patron > 0.8 && patron <= 0.9 && nivel !== 1 && stopAnim == "stop") {
       barbijos
         .create(x2, 600, "barbijo")
         .setVelocityY(-200)
         .setOrigin(0.9, 0.1)
         .setSize(1000, 750, true)
         .setScale(0.035);
+    } else if ((patron > 0.4 && patron <= 0.8) || nivel !== 3) {
+      goods
+        .create(x2, 600, "jabon")
+        .setVelocityY(-200)
+        .setSize(750, 450, true)
+        .setScale(0.05);
     }
   }
 
@@ -393,40 +426,37 @@ class scene3 extends Phaser.Scene {
 
   update() {
     if (cursors.left.isDown && cursors.up.isDown) {
-      player.anims.play("left", true).setVelocityX(vel2X).setVelocityY(vel2Y2);
+      player.anims.play(leftAnim, true).setVelocityX(vel2X).setVelocityY(vel2Y2);
     } else if (cursors.left.isDown && cursors.down.isDown) {
-      player.anims.play("left", true).setVelocityX(vel2X).setVelocityY(vel2Y);
+      player.anims.play(leftAnim, true).setVelocityX(vel2X).setVelocityY(vel2Y);
     } else if (cursors.right.isDown && cursors.up.isDown) {
-      player.anims
-        .play("right", true)
-        .setVelocityX(vel2X2)
-        .setVelocityY(vel2Y2);
+      player.anims.play(rightAnim, true).setVelocityX(vel2X2).setVelocityY(vel2Y2);
     } else if (cursors.right.isDown && cursors.down.isDown) {
-      player.anims.play("right", true).setVelocityX(vel2X2).setVelocityY(vel2Y);
+      player.anims.play(rightAnim, true).setVelocityX(vel2X2).setVelocityY(vel2Y);
     } else if (cursors.left.isDown) {
       player.setVelocityX(velX);
-      player.anims.play("left", true);
+      player.anims.play(leftAnim, true);
     } else if (cursors.right.isDown) {
       player.setVelocityX(velX2);
-      player.anims.play("right", true);
+      player.anims.play(rightAnim, true);
     } else {
       player.setVelocityX(0);
     }
 
     if (cursors.left.isDown && cursors.up.isDown) {
-      player.anims.play("left", true).setVelocityX(vel2X).setVelocityY(vel2Y2);
+      player.anims.play(leftAnim, true).setVelocityX(vel2X).setVelocityY(vel2Y2);
     } else if (cursors.left.isDown && cursors.down.isDown) {
-      player.anims.play("left", true).setVelocityX(vel2X).setVelocityY(vel2Y);
+      player.anims.play(leftAnim, true).setVelocityX(vel2X).setVelocityY(vel2Y);
     } else if (cursors.right.isDown && cursors.up.isDown) {
-      player.anims.play("right", true).setVelocityX(vel2X2).setVelocityY(vel2Y2);
+      player.anims.play(rightAnim, true).setVelocityX(vel2X2).setVelocityY(vel2Y2);
     } else if (cursors.right.isDown && cursors.down.isDown) {
-      player.anims.play("right", true).setVelocityX(vel2X2).setVelocityY(vel2Y);
+      player.anims.play(rightAnim, true).setVelocityX(vel2X2).setVelocityY(vel2Y);
     } else if (cursors.down.isDown) {
       player.setVelocityY(velY);
-      player.anims.play("down", true);
+      player.anims.play(downAnim, true);
     } else if (cursors.up.isDown) {
       player.setVelocityY(velY2);
-      player.anims.play("up", true);
+      player.anims.play(upAnim, true);
     } else {
       player.setVelocityY(0);
     }
@@ -435,31 +465,40 @@ class scene3 extends Phaser.Scene {
       this.gameover();
     }
 
-    if (score == 100) {
+    if (score >= 200) {
       this.lvlfinish();
     }
   }
 
   collectGoods(player, goods) {
     goods.destroy();
-    score += 5;
-    progressBar.fillRect(19, 19, 2 * score, 19);
+    progressBar.fillRect(19, 19, (score += 10), 19);
+    track = this.sound.add("goodiesfx", { loop: false });
+    track.play();
+  }
+
+  collectGoods2(player, goods2) {
+    goods2.destroy();
+    progressBar.fillRect(19, 19, (score += 7.5), 19);
     track = this.sound.add("goodiesfx", { loop: false });
     track.play();
   }
 
   badsHit(player, bads) {
     bads.destroy();
-    lives--;
+    if (stopAnim == "stop2") {
+      this.finbarbijo();
+    } else {
+      lives--;
+      if (lives > -1) {
+        // Se quita un corazón cada vez que se choca con un objeto malo
+        var corazonErrase = corazones.getChildren()[
+          corazones.getChildren().length - 1
+        ];
 
-    if (lives > -1) {
-      // Se quita un corazón cada vez que se choca con un objeto malo
-      var corazonErrase = corazones.getChildren()[
-        corazones.getChildren().length - 1
-      ];
-
-      if (corazonErrase !== undefined) {
-        corazonErrase.destroy();
+        if (corazonErrase !== undefined) {
+          corazonErrase.destroy();
+        }
       }
     }
   }
@@ -467,8 +506,7 @@ class scene3 extends Phaser.Scene {
   //función que se ejecuta al agarrar una vacuna.
   vacunado(player, vacunas) {
     vacunas.destroy();
-    score += 20;
-    progressBar.fillRect(19, 19, 2.5 * score, 19);
+    progressBar.fillRect(19, 19, (score += 40), 19);
     track = this.sound.add("vacunasfx", { loop: false });
     track.play();
     velX = -300;
@@ -502,8 +540,13 @@ class scene3 extends Phaser.Scene {
 
   collectBarbijo(player, barbijos) {
     barbijos.destroy();
-    score += 5;
-    progressBar.fillRect(19, 19, 2 * score, 19);
+    player.setTexture("jugador2");
+    upAnim = "up2";
+    downAnim = "down2";
+    rightAnim = "right2";
+    leftAnim = "left2";
+    stopAnim = "stop2";
+    progressBar.fillRect(19, 19, (score += 5), 19);
     track = this.sound.add("goodiesfx", { loop: false });
     track.play();
     timedEvent3 = this.time.addEvent({
@@ -514,7 +557,14 @@ class scene3 extends Phaser.Scene {
     });
   }
 
-  finbarbijo() {}
+  finbarbijo() {
+    player.setTexture("jugador");
+    upAnim = "up";
+    downAnim = "down";
+    rightAnim = "right";
+    leftAnim = "left";
+    stopAnim = "stop";
+  }
 
   badsErrase(collider, bads) {
     bads.destroy();
@@ -534,7 +584,7 @@ class scene3 extends Phaser.Scene {
 
   pausa() {
     this.physics.pause();
-    player.anims.play("stop");
+    player.anims.play(stop);
     timedEvent.paused = true;
     bpausa.destroy();
 
@@ -763,8 +813,15 @@ class scene3 extends Phaser.Scene {
   //Se ejecuta esta función al perderse todas las vidas.
   gameover() {
     this.physics.pause();
-    player.anims.play("stop");
+    player.anims.play(stopAnim);
     timedEvent.paused = true;
+
+    if (nivel !== 1 && stopAnim == "stop2") {
+      upAnim = "up";
+      downAnim = "down";
+      rightAnim = "right";
+      leftAnim = "left";
+    }
 
     this.add.image(400, 300, "nperdido");
 
@@ -781,9 +838,19 @@ class scene3 extends Phaser.Scene {
 
   //Se ejecuta esta función al ganarse un nivel.
   lvlfinish() {
+    progressBar.clear();
+    progressBar.fillStyle(0xffffff, 1);
+    progressBar.fillRect(19, 19, 200, 19);
     this.physics.pause();
-    player.anims.play("stop");
     timedEvent.paused = true;
+    player.anims.play(stopAnim);
+
+    if (nivel !== 1 && stopAnim == "stop2") {
+      upAnim = "up";
+      downAnim = "down";
+      rightAnim = "right";
+      leftAnim = "left";
+    }
 
     this.add.image(400, 300, "nsuperado");
 
@@ -811,13 +878,18 @@ class scene3 extends Phaser.Scene {
       nivel++;
       nivsup++;
     }
+    if (nivel !== 1 && stopAnim == "stop2") {
+      stopAnim = "stop";
+    }
     this.scene.start("game");
   }
 
   reinicio() {
     this.scene.start("game");
     timedEvent.paused = false;
-
+    if (nivel !== 1 && stopAnim == "stop2") {
+      stopAnim = "stop";
+    }
     lives = 3;
     score = 0;
   }
@@ -828,6 +900,13 @@ class scene3 extends Phaser.Scene {
     timedEvent.paused = false;
     lives = 3;
     score = 0;
+    if (nivel !== 1 && stopAnim == "stop2") {
+      upAnim = "up";
+      downAnim = "down";
+      rightAnim = "right";
+      leftAnim = "left";
+      stopAnim = "stop";
+    }
     track = undefined;
   }
 }
