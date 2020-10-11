@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,24 +9,101 @@
     <!--LLamamos a phaser a través de un CDN (desde un server)-->
     <script src="//cdn.jsdelivr.net/npm/phaser@3.24.1/dist/phaser.min.js"></script>
 
-    <!--Declaramos las distintas escenas que componen al juego-->
-    <script type="text/javascript" src="assets/js/scene1.js"></script>
-    <script type="text/javascript" src="assets/js/scene2.js"></script>
-    <script type="text/javascript" src="assets/js/scene3.js"></script>
-    <script type="text/javascript" src="assets/js/scene4.js"></script>
-    <script type="text/javascript" src="assets/js/scene5.js"></script>
-    <script type="text/javascript" src="assets/js/scene6.js"></script>
-    <script type="text/javascript" src="assets/js/scene7.js"></script>
-    <script type="text/javascript" src="assets/js/scene8.js"></script>
-
     <!--Declaramos la escena que contiene las configuraciones básicas/primarias de nuestro juego-->
-    <script type="text/javascript" src="assets/js/game.js"></script>
+    <script type="module" src="js/scenes/game.js"></script>
+    <script>
+      //declaramos las variables que utilizará nuestro juego en las demás escenas y, si es necesario, seteamos valores (algunos valores serán seteados máds adelante).
+      var game;
+      var isMobile;
+      var lives = 3;
+      var score = 199;
+      var level = 1;
+      var levOver = 0;
+      var menu;
+      var timedEvent;
+      var timedEvent2;
+      var timedEvent3;
+      var player;
+      var ball;
+      var velBallX;
+      var velBallY;
+      var b1;
+      var b2;
+      var b3;
+      var b4;
+      var b5;
+      var b6;
+      var b7;
+      var b8;
+      var cursors;
+      var FKey;
+      var up = false;
+      var down = false;
+      var left = false;
+      var right = false;
+      var upLeft = false;
+      var upRight = false;
+      var downLeft = false;
+      var downRight = false;
+      var type;
+      var mud;
+      var virus;
+      var soap;
+      var alcohol;
+      var vaccine;
+      var chinstrap;
+      var velObj;
+      var collider;
+      var pattern;
+      var pattern2;
+      var pattern3;
+      var pattern4;
+      var hearts;
+      var heartErrase;
+      var progressBar;
+      var progressBox;
+      var trees;
+      var font;
+      var countvac;
+      var iobject;
+      var upAnim = "up";
+      var downAnim = "down";
+      var rightAnim = "right";
+      var leftAnim = "left";
+      var stopAnim = "stop";
+      var velX;
+      var velY;
+      var velX2;
+      var velY2;
+      var vel2X;
+      var vel2X2;
+      var vel2Y;
+      var vel2Y2;
+      var i;
+      var track;
+      var bpause;
+      var button;
+      var button2;
+      var button3;
+      var button4;
+      var fsoap;
+      var fvaccine;
+      var falcohol;
+      var fchinstrap;
+      var fmud;
+      var fvirus;
+      var fcloud;
+      var buttonsfx;
+      var button2sfx;
+      var baddiessfx;
+      var lvlmusic;
+      var WorLmsc;
+    </script>
   </head>
   <style>
     body {
-      background-color:rgb(88, 125, 145);
+      background-color: rgb(88, 125, 145);
     }
   </style>
-  <body>
-  </body>
+  <body></body>
 </html>
