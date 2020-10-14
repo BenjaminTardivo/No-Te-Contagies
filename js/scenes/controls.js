@@ -13,7 +13,9 @@ class controls extends Phaser.Scene {
       .setInteractive()
       .on("pointerdown", () => {
         this.scene.start("main");
-        button2sfx.play();
+        if (sfx == true) {
+          bbacksfx.play();
+        }      
       });
 
     this.add
@@ -21,7 +23,9 @@ class controls extends Phaser.Scene {
       .setInteractive()
       .on("pointerdown", () => {
         this.scene.start("help");
-        buttonsfx.play();
+        if (sfx == true) {
+          bnextsfx.play();
+      }    
     });
   }
 }

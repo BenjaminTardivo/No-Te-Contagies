@@ -41,11 +41,6 @@ class help extends Phaser.Scene {
       .setInteractive()
       .on("pointerover", () => this.icreate6());
 
-    this.add
-      .image(567, 426, "fcloud")
-      .setInteractive()
-      .on("pointerover", () => this.icreate7());
-
     i = 0;
 
     //Creación de botones y seteo de funciones de los mismos.
@@ -54,7 +49,9 @@ class help extends Phaser.Scene {
       .setInteractive()
       .on("pointerdown", () => {
         this.scene.start("main")
-        button2sfx.play();
+        if (sfx == true) {
+          bbacksfx.play();
+        }      
       });
 
     this.add
@@ -62,8 +59,13 @@ class help extends Phaser.Scene {
       .setInteractive()
       .on("pointerdown", () => {
         this.scene.start("controls")
-        buttonsfx.play();
-      });
+        if (sfx == true) {
+          if (iobject !== undefined) {
+          iobject.destroy();
+        }
+        bnextsfx.play();
+      }
+    });
   }
 
   //Creación de funciones que serán ejecutadas cuando el usuario pase el mouse por el objeto correspondiente a cada.
@@ -125,16 +127,6 @@ class help extends Phaser.Scene {
     } else {
       iobject.destroy();
       iobject = this.add.image(648, 345, "ivirus");
-    }
-  }
-
-  icreate7() {
-    if (i == 0) {
-      iobject = this.add.image(567, 426, "icloud");
-      i++;
-    } else {
-      iobject.destroy();
-      iobject = this.add.image(567, 426, "icloud");
     }
   }
 

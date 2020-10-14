@@ -16,8 +16,12 @@ class selector extends Phaser.Scene {
         if (level != 1) {
           level = 1;
         }
-        buttonsfx.play();
+        if (sfx == true) {
+          bnextsfx.play();
+        } 
+        if (track !== undefined) {
         track.pause();
+        }
         this.scene.start("gameplay");
       });
 
@@ -26,7 +30,9 @@ class selector extends Phaser.Scene {
       .setInteractive()
       .on("pointerdown", () => {
         this.scene.start("main")
-        button2sfx.play();
+        if (sfx == true) {
+          bbacksfx.play();
+        }      
       });
 
     if (levOver == 0) {
@@ -49,8 +55,12 @@ class selector extends Phaser.Scene {
           if (level != 2) {
             level = 2;
           }
-          buttonsfx.play();
-          track.pause();
+          if (sfx == true) {
+            bnextsfx.play();
+          }          
+          if (track !== undefined) {
+            track.pause();
+          }
           this.scene.start("gameplay");
         });
     } else if (levOver == 2) {
@@ -66,7 +76,9 @@ class selector extends Phaser.Scene {
             level = 2;
           }
         });
-      track.pause();
+      if (track !== undefined) {
+        track.pause();
+      }
       this.scene.start("gameplay");
       this.add
         .image(465, 284, "blevel3")
@@ -75,8 +87,12 @@ class selector extends Phaser.Scene {
           if (level != 3) {
             level = 3;
           }
-          buttonsfx.play();
-          track.pause();
+          if (sfx == true) {
+            bnextsfx.play();
+          }  
+          if (track !== undefined) {
+            track.pause();
+          }
           this.scene.start("gameplay");
         });
     } else {
@@ -89,8 +105,12 @@ class selector extends Phaser.Scene {
             level = 2;
           }
         });
-      buttonsfx.play();
-      track.pause();
+        if (sfx == true) {
+          bnextsfx.play();
+        }  
+      if (track !== undefined) {
+        track.pause();
+      }
       this.scene.start("gameplay");
       this.add
         .image(465, 284, "blevel3")
@@ -99,7 +119,9 @@ class selector extends Phaser.Scene {
           if (level != 3) {
             level = 3;
           }
-          track.pause();
+          if (track !== undefined) {
+            track.pause();
+          }
           this.scene.start("gameplay");
         });
     }
