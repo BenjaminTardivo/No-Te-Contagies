@@ -7,7 +7,11 @@ class selector extends Phaser.Scene {
     this.add
       .image(400, 300, "selector")
       .setInteractive()
-      .on("pointerover", () => iobject.destroy());
+      .on("pointerover", () => {
+        if (iobject !== undefined && levOver <= 2) {
+          iobject.destroy()
+        }
+      });
 
     this.add
       .image(189, 284, "blevel1")
@@ -22,6 +26,9 @@ class selector extends Phaser.Scene {
         if (track !== undefined) {
         track.pause();
         }
+        if (levOver == 0) {
+          i = 0;
+        }
         this.scene.start("gameplay");
       });
 
@@ -29,10 +36,10 @@ class selector extends Phaser.Scene {
       .image(132, 131, "bback")
       .setInteractive()
       .on("pointerdown", () => {
-        this.scene.start("main")
         if (sfx == true) {
           bbacksfx.play();
-        }      
+        }
+        this.scene.start("main")   
       });
 
     if (levOver == 0) {
@@ -61,6 +68,9 @@ class selector extends Phaser.Scene {
           if (track !== undefined) {
             track.pause();
           }
+          if (levOver == 1) {
+            i = 0;
+          }
           this.scene.start("gameplay");
         });
     } else if (levOver == 2) {
@@ -75,11 +85,17 @@ class selector extends Phaser.Scene {
           if (level != 2) {
             level = 2;
           }
+          if (sfx == true) {
+            bnextsfx.play();
+          }  
+          if (track !== undefined) {
+            track.pause();
+          }
+          if (levOver == 1) {
+            i = 0;
+          }
+          this.scene.start("gameplay");
         });
-      if (track !== undefined) {
-        track.pause();
-      }
-      this.scene.start("gameplay");
       this.add
         .image(465, 284, "blevel3")
         .setInteractive()
@@ -93,10 +109,12 @@ class selector extends Phaser.Scene {
           if (track !== undefined) {
             track.pause();
           }
+          if (levOver == 2) {
+            i = 0;
+          }
           this.scene.start("gameplay");
         });
-    } else {
-      this.add.image(603, 284, "bpvp");
+    } else if (levOver == 3) {
       this.add
         .image(328, 284, "blevel2")
         .setInteractive()
@@ -104,14 +122,17 @@ class selector extends Phaser.Scene {
           if (level != 2) {
             level = 2;
           }
+          if (sfx == true) {
+            bnextsfx.play();
+          }  
+        if (track !== undefined) {
+          track.pause();
+        }
+        if (levOver == 1) {
+          i = 0;
+        }
+          this.scene.start("gameplay");
         });
-        if (sfx == true) {
-          bnextsfx.play();
-        }  
-      if (track !== undefined) {
-        track.pause();
-      }
-      this.scene.start("gameplay");
       this.add
         .image(465, 284, "blevel3")
         .setInteractive()
@@ -119,11 +140,18 @@ class selector extends Phaser.Scene {
           if (level != 3) {
             level = 3;
           }
+          if (sfx == true) {
+            bnextsfx.play();
+          } 
           if (track !== undefined) {
             track.pause();
           }
+          if (levOver == 2) {
+            i = 0;
+          }
           this.scene.start("gameplay");
         });
+        this.add.image(603, 284, "bpvp");
     }
   }
 }

@@ -12,11 +12,23 @@ class lenguage extends Phaser.Scene {
         .image(178, 260, "bspanish")
         .setInteractive()
         .on("pointerdown", () => {
+          if (language == undefined) {
+            language = 'spanish'
+          }
             bnextsfx.play();
             this.scene.start("main")
         });
 
-    this.add.image(398, 260, "benglish")
+    this.add
+    .image(398, 260, "benglish")
+    .setInteractive()
+    .on('pointerdown', () => {
+      if (language == undefined) {
+        language = 'english'
+      }
+      bnextsfx.play();
+      this.scene.start("main")
+    })
     this.add.image(618, 260, "bportuguese")
   }
 }

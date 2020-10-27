@@ -6,42 +6,84 @@ class help extends Phaser.Scene {
   create() {
     //Seteamos el background del menú.
     this.add
-      .image(400, 300, "help")
+      .image(400, 300, helpscene)
       .setInteractive()
-      .on("pointerover", () => this.iErrase());
+      .on("pointerover", () => {
+        if (iobject !== undefined) {
+          iobject.destroy();
+        }
+      });
 
     //Implementamos los objetos que darán información al jugador al momento de pasar el mouse por ellos.
     this.add
       .image(163, 330, "fsoap")
       .setInteractive()
-      .on("pointerover", () => this.icreate());
+      .on("pointerover", () => {
+        if (iobject !== undefined) {
+          iobject.destroy();
+        }
+        iobject = this.add.image(163, 330, infojabon);
+      });
 
     this.add
       .image(298, 328, "fvaccine")
       .setInteractive()
-      .on("pointerover", () => this.icreate2());
+      .on("pointerover", () => {
+        if (iobject !== undefined) {
+          iobject.destroy();
+        }
+        iobject = this.add.image(298, 328, infovacuna);
+      });
 
     this.add
       .image(168, 413, "falcohol")
       .setInteractive()
-      .on("pointerover", () => this.icreate3());
+      .on("pointerover", () => {
+        if (iobject !== undefined) {
+          iobject.destroy();
+        }
+        iobject = this.add.image(168, 413, infoalcohol);
+      });
 
     this.add
       .image(295, 416, "fchinstrap")
       .setInteractive()
-      .on("pointerover", () => this.icreate4());
+      .on("pointerover", () => {
+        if (iobject !== undefined) {
+          iobject.destroy();
+        }
+        iobject = this.add.image(295, 416, infobarbijo);
+      });
 
     this.add
-      .image(506, 336, "fmud")
+      .image(506, 328, "fmud")
       .setInteractive()
-      .on("pointerover", () => this.icreate5());
+      .on("pointerover", () => {
+        if (iobject !== undefined) {
+          iobject.destroy();
+        }
+        iobject = this.add.image(506, 328, infobarro);
+      });
 
     this.add
-      .image(648, 348, "fvirus")
+      .image(648, 328, "fvirus")
       .setInteractive()
-      .on("pointerover", () => this.icreate6());
+      .on("pointerover", () => {
+        if (iobject !== undefined) {
+          iobject.destroy();
+        }
+        iobject = this.add.image(648, 328, infovirus);
+      });
 
-    i = 0;
+    this.add
+      .image(574, 407, "fkid")
+      .setInteractive()
+      .on("pointerover", () => {
+        if (iobject !== undefined) {
+          iobject.destroy();
+        }
+        iobject = this.add.image(574, 407, infokid);
+      });
 
     //Creación de botones y seteo de funciones de los mismos.
     this.add
@@ -55,84 +97,17 @@ class help extends Phaser.Scene {
       });
 
     this.add
-      .image(677, 514, "bcontrols")
+      .image(677, 514, botcontroles)
       .setInteractive()
       .on("pointerdown", () => {
         this.scene.start("controls")
         if (sfx == true) {
-          if (iobject !== undefined) {
+          bnextsfx.play();
+        }  
+        if (iobject !== undefined) {
           iobject.destroy();
         }
-        bnextsfx.play();
-      }
     });
-  }
-
-  //Creación de funciones que serán ejecutadas cuando el usuario pase el mouse por el objeto correspondiente a cada.
-  //Cada función ejecuta el creado del cuadro de información al pasar el mouse sobre el objeto.
-  icreate() {
-    if (i == 0) {
-      iobject = this.add.image(163, 330, "isoap");
-      i++;
-    } else {
-      iobject.destroy();
-      iobject = this.add.image(163, 330, "isoap");
-    }
-  }
-
-  icreate2() {
-    if (i == 0) {
-      iobject = this.add.image(298, 328, "ivaccine");
-      i++;
-    } else {
-      iobject.destroy();
-      iobject = this.add.image(298, 328, "ivaccine");
-    }
-  }
-
-  icreate3() {
-    if (i == 0) {
-      iobject = this.add.image(168, 413, "ialcohol");
-      i++;
-    } else {
-      iobject.destroy();
-      iobject = this.add.image(168, 413, "ialcohol");
-    }
-  }
-
-  icreate4() {
-    if (i == 0) {
-      iobject = this.add.image(295, 416, "ichinstrap");
-      i++;
-    } else {
-      iobject.destroy();
-      iobject = this.add.image(295, 416, "ichinstrap");
-    }
-  }
-
-  icreate5() {
-    if (i == 0) {
-      iobject = this.add.image(506, 336, "imud");
-      i++;
-    } else {
-      iobject.destroy();
-      iobject = this.add.image(506, 336, "imud");
-    }
-  }
-
-  icreate6() {
-    if (i == 0) {
-      iobject = this.add.image(648, 345, "ivirus");
-      i++;
-    } else {
-      iobject.destroy();
-      iobject = this.add.image(648, 345, "ivirus");
-    }
-  }
-
-  iErrase() {
-    iobject.destroy();
-    i--;
   }
 }
 
