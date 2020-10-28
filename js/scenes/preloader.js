@@ -170,6 +170,7 @@ class preloader extends Phaser.Scene {
     this.load.image('credits-en', 'assets/images/menus/Ingles/Menú creditos.png');
     this.load.image('htp2-en', 'assets/images/menus/Ingles/htp2.png');
     this.load.image('controls2-en', 'assets/images/menus/Ingles/controls2.png');
+    this.load.image('selector-en', 'assets/images/menus/Ingles/Selector.png');
     //botones en ingles
     this.load.image('bcontrols-en', 'assets/images/buttons/Ingles/controls.png');
     this.load.image('bhelp-en', 'assets/images/buttons/Ingles/help.png');
@@ -182,6 +183,8 @@ class preloader extends Phaser.Scene {
     this.load.image('bcredits-en', 'assets/images/buttons/Ingles/credits.png');
     this.load.image('bexit-en', 'assets/images/buttons/Ingles/exit.png');
     this.load.image('bplay-en', 'assets/images/buttons/Ingles/play.png');
+    this.load.image('bpvp-en', 'assets/images/buttons/Ingles/pvp.png');
+    this.load.image('ipvp-en', 'assets/images/buttons/Ingles/info jvj.png');
 
     //carga de audio.
     this.load.audio("mainmsc", "assets/music/main.mp3");

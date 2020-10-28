@@ -36,6 +36,9 @@ class main extends Phaser.Scene {
       helpb = 'bhelp2'
       helpscene2 = 'help2'
       ctrlsscene2 = 'controls2'
+      selectorscene = 'selector'
+      pvpb = 'bpvp'
+      ipvpb = 'ipvp'
     }
     if (language == 'english'){
       play = 'bplay-en'
@@ -65,6 +68,9 @@ class main extends Phaser.Scene {
       helpb = 'bhelp2-en'
       helpscene2 = 'htp2-en'
       ctrlsscene2 = 'controls2-en'
+      selectorscene = 'selector-en'
+      pvpb = 'bpvp-en'
+      ipvpb = 'ipvp-en'
     }
     if (track == undefined && music == true) {
       track = this.sound.add("mainmsc", { loop: true });
