@@ -195,7 +195,8 @@ class preloader extends Phaser.Scene {
     this.load.audio("vaccinesfx", "assets/sfx/vaccine.mp3");
     this.load.audio("badsfx", "assets/sfx/bad.mp3");
     this.load.audio("bbacksfx", "assets/sfx/bback.mp3");
-    
+    this.load.audio('lvlsupmsc', 'assets/music/Musica nivel superado.wav');
+    this.load.audio('lvllostmsc', 'assets/music/Musica nivel perdido.wav');
 		}
 
 		this.load.on('progress', this.updateBar, {newGraphics:this.newGraphics,loadingText:loadingText});

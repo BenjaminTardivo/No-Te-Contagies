@@ -239,7 +239,8 @@ class gameplay extends Phaser.Scene {
         }      
       });
     bmsc = this.add
-      .image(704, 30, bmscText)
+      .image(684, 30, bmscText)
+      .setScale(1.20)
       .setInteractive()
       .on("pointerdown", () => {
         if (music == true) {
@@ -266,7 +267,8 @@ class gameplay extends Phaser.Scene {
         }
       });
     bsfx = this.add
-      .image(734, 30, bsfxText)
+      .image(724, 30, bsfxText)
+      .setScale(1.20)
       .setInteractive()
       .on("pointerdown", () => {
         if (sfx == true) {
@@ -806,6 +808,11 @@ class gameplay extends Phaser.Scene {
     timedEvent.paused = true;
     player.anims.play(stopAnim);
 
+    if( music == true ){
+      this.lvlfmsc = this.sound.add('lvllostmsc')
+      this.lvlfmsc.play()
+    }
+
     if (level == 1) {
       ball.anims.play("stopBall", true);
     } else if (level !== 1 && stopAnim == "stop2") {
@@ -854,6 +861,10 @@ class gameplay extends Phaser.Scene {
     progressBar.clear();
     progressBar.fillStyle(0xffffff, 1);
     progressBar.fillRect(19, 19, 200, 19);
+    if (music == true){
+      this.lvlsupmsc = this.sound.add('lvlsupmsc')
+      this.lvlsupmsc.play()
+    }
     player.destroy()
     player = new Player({ scene: this, x: 380, y: 470, texture: "player" });
     this.physics.pause();
