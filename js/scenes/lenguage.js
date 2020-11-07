@@ -34,7 +34,7 @@ class lenguage extends Phaser.Scene {
     .setInteractive()
     .on('pointerdown', () => {
       if (language == undefined) {
-        language = 'portuguese'
+        language = 'portugues'
       }
       bnextsfx.play();
       this.scene.start("main")

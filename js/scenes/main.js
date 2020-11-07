@@ -72,6 +72,38 @@ class main extends Phaser.Scene {
       pvpb = 'bpvp-en'
       ipvpb = 'ipvp-en'
     }
+    if(language == 'portugues'){
+      play = 'bplay-pt'
+      credits = 'bcredits-pt'
+      help = 'bhelpM-pt'
+      exit = 'bexit-pt'
+      helpscene = 'Htp-pt'
+      ctrlsscene = 'ctrls-pt'
+      creditsscene = 'credits-pt'
+      infojabon = 'ijabon-pt'
+      infovacuna = 'ivacuna-pt'
+      infoalcohol = 'ialcohol-pt'
+      infobarbijo = 'ibarbijo-pt'
+      infobarro = 'ibarro-pt'
+      infovirus = 'ivirus-pt'
+      infokid = 'icontagiados-pt'
+      botcontroles = 'bcontrols'
+      btHTP = 'bhtp-pt'
+      losttxt = 'lvllost-pt'
+      reintentarb = 'bretry'
+      menub = 'bmenu-pt'
+      wintxt = 'lvlsup-pt'
+      continueb = 'bnextlvl-pt'
+      retryb = 'bretry-pt'
+      pausescene = 'pause'
+      resumeb = 'bresume-pt'
+      helpb = 'bhelp-pt'
+      helpscene2 = 'htp2-pt'
+      ctrlsscene2 = 'controls2-pt'
+      selectorscene = 'selector-pt'
+      pvpb = 'bpvp'
+      ipvpb = 'ipvp-pt'
+    }
     if (track == undefined && music == true) {
       track = this.sound.add("mainmsc", { loop: true });
       track.play();
@@ -108,7 +140,9 @@ class main extends Phaser.Scene {
       .image(90, 558, exit)
       .setInteractive()
       .on("pointerdown", () => {
-        track.pause();
+        if (music == true) {
+          track.pause();
+        }
         window.location.href = "http://www.google.com";
         if (sfx == true) {
           bnextsfx.play();

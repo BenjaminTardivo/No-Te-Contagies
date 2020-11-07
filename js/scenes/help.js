@@ -11,6 +11,7 @@ class help extends Phaser.Scene {
       .on("pointerover", () => {
         if (iobject !== undefined) {
           iobject.destroy();
+          iobject = undefined;
         }
       });
 

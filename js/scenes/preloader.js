@@ -106,6 +106,11 @@ class preloader extends Phaser.Scene {
     this.load.image("ivirus", "assets/images/objects/ivirus.png");
     this.load.image("ikid", "assets/images/objects/ikid.png");
     this.load.image("ipvp", "assets/images/objects/ipvp.png");
+    this.load.image("pbad", "assets/images/objects/pbad.png");
+    this.load.image("palcohol", "assets/images/objects/palcohol.png");
+    this.load.image("psoap", "assets/images/objects/psoap.png");
+    this.load.image("pchinstrap", "assets/images/objects/pchinstrap.png");
+    this.load.image("pvaccine", "assets/images/objects/pvaccine.png");
     this.load.image("bench", "assets/images/objects/bench.png");
     this.load.image("bench2", "assets/images/objects/bench2.png");
     this.load.image("bench3", "assets/images/objects/bench3.png");
@@ -115,6 +120,7 @@ class preloader extends Phaser.Scene {
     this.load.image("bench7", "assets/images/objects/bench7.png");
     this.load.image("bench8", "assets/images/objects/bench8.png");
     this.load.image("bench9", "assets/images/objects/bench9.png");
+    this.load.image('barra', 'assets/images/objects/barra 2.png');
 
     //carga de botones.
     this.load.image("bspanish", "assets/images/buttons/bspanish.png");
@@ -171,6 +177,7 @@ class preloader extends Phaser.Scene {
     this.load.image('htp2-en', 'assets/images/menus/Ingles/htp2.png');
     this.load.image('controls2-en', 'assets/images/menus/Ingles/controls2.png');
     this.load.image('selector-en', 'assets/images/menus/Ingles/Selector.png');
+
     //botones en ingles
     this.load.image('bcontrols-en', 'assets/images/buttons/Ingles/controls.png');
     this.load.image('bhelp-en', 'assets/images/buttons/Ingles/help.png');
@@ -186,6 +193,36 @@ class preloader extends Phaser.Scene {
     this.load.image('bpvp-en', 'assets/images/buttons/Ingles/pvp.png');
     this.load.image('ipvp-en', 'assets/images/buttons/Ingles/info jvj.png');
 
+    //carga de assets en portugues
+    this.load.image('Htp-pt', 'assets/images/menus/Portugues/Como jugar v1.png');
+    this.load.image('ctrls-pt', 'assets/images/menus/Portugues/Controles v1.png');
+    this.load.image('ialcohol-pt', 'assets/images/menus/Portugues/info alcohol.png');
+    this.load.image('ibarbijo-pt', 'assets/images/menus/Portugues/info barbijo.png');
+    this.load.image('ibarro-pt', 'assets/images/menus/Portugues/info suciedad.png');
+    this.load.image('icontagiados-pt', 'assets/images/menus/Portugues/info contagiados.png');
+    this.load.image('ijabon-pt', 'assets/images/menus/Portugues/info jabón.png');
+    this.load.image('ivacuna-pt', 'assets/images/menus/Portugues/info vacuna.png');
+    this.load.image('ivirus-pt', 'assets/images/menus/Portugues/info virus.png');
+    this.load.image('lvlsup-pt', 'assets/images/menus/Portugues/Nivel superado.png');
+    this.load.image('lvllost-pt', 'assets/images/menus/Portugues/Nivel perdido.png');
+    this.load.image('credits-pt', 'assets/images/menus/Portugues/Menú creditos.png');
+    this.load.image('htp2-pt', 'assets/images/menus/Portugues/Como Jugar v2.png');
+    this.load.image('controls2-pt', 'assets/images/menus/Portugues/Controles v2.png');
+    this.load.image('selector-pt', 'assets/images/menus/Portugues/Selector de niveles.png');
+
+    //botones en portugues
+    this.load.image('bhelp-pt', 'assets/images/buttons/Portugues/ajuda.png');
+    this.load.image('bhelpM-pt', 'assets/images/buttons/Portugues/ajudaM.png');
+    this.load.image('bhtp-pt', 'assets/images/buttons/Portugues/como jogar.png');
+    this.load.image('bmenu-pt', 'assets/images/buttons/Portugues/menu principal.png');
+    this.load.image('bnextlvl-pt', 'assets/images/buttons/Portugues/próximo nível.png');
+    this.load.image('bresume-pt', 'assets/images/buttons/Portugues/retomar.png');
+    this.load.image('bretry-pt', 'assets/images/buttons/Portugues/tentar novamente.png');
+    this.load.image('bcredits-pt', 'assets/images/buttons/Portugues/Créditos.png');
+    this.load.image('bexit-pt', 'assets/images/buttons/Portugues/sair.png');
+    this.load.image('bplay-pt', 'assets/images/buttons/Portugues/jogar.png');
+    this.load.image('ipvp-pt', 'assets/images/buttons/Portugues/info jvj.png');
+
     //carga de audio.
     this.load.audio("mainmsc", "assets/music/main.mp3");
     this.load.audio("lvl1msc", "assets/music/level1.mp3");
@@ -195,8 +232,8 @@ class preloader extends Phaser.Scene {
     this.load.audio("vaccinesfx", "assets/sfx/vaccine.mp3");
     this.load.audio("badsfx", "assets/sfx/bad.mp3");
     this.load.audio("bbacksfx", "assets/sfx/bback.mp3");
-    this.load.audio('lvlsupmsc', 'assets/music/Musica nivel superado.wav');
-    this.load.audio('lvllostmsc', 'assets/music/Musica nivel perdido.wav');
+    this.load.audio('lvlsupmsc', 'assets/music/Musica nivel superado.mp3');
+    this.load.audio('lvllostmsc', 'assets/music/Musica nivel perdido.mp3');
 		}
 
 		this.load.on('progress', this.updateBar, {newGraphics:this.newGraphics,loadingText:loadingText});
