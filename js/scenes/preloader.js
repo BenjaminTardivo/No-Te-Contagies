@@ -121,6 +121,7 @@ class preloader extends Phaser.Scene {
     this.load.image("bench8", "assets/images/objects/bench8.png");
     this.load.image("bench9", "assets/images/objects/bench9.png");
     this.load.image('barra', 'assets/images/objects/barra 2.png');
+    this.load.video('Logo', 'assets/images/menus/UNRaf_Video.mp4', 'loadeddata', false, true);
 
     //carga de botones.
     this.load.image("bspanish", "assets/images/buttons/bspanish.png");
@@ -237,7 +238,6 @@ class preloader extends Phaser.Scene {
 		}
 
 		this.load.on('progress', this.updateBar, {newGraphics:this.newGraphics,loadingText:loadingText});
-		this.load.on('complete', this.complete);
 	}
 
 	updateBar(percentage) {
@@ -247,16 +247,12 @@ class preloader extends Phaser.Scene {
         
     percentage = percentage * 100;
     this.loadingText.setText("Cargando: " + percentage.toFixed(2) + "%");
-    console.log("P:" + percentage);
 	}
 
-	complete() {
-		console.log("COMPLETE!");
-
-  }
-
   create() {
-    this.scene.start("lenguage");
+    this.video=this.add.video(400, 300, 'Logo').setScale(1.5)
+    this.video.play(false);
+    this.video.on('complete', () => this.scene.start('lenguage'))
   }
 }
 
