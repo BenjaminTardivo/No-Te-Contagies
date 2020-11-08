@@ -21,7 +21,7 @@ class preloader extends Phaser.Scene {
 		var loadingText = this.add.text(250,260,"Loading: ", { fontSize: '32px', fill: '#FFF' });
 
     
-		for(var i =0;i<30;i++) {
+	
     //carga de escenas.
     this.load.image("lenguage", "assets/images/menus/lenguage.png");
     this.load.image("menu", "assets/images/menus/menu.png");
@@ -235,7 +235,7 @@ class preloader extends Phaser.Scene {
     this.load.audio("bbacksfx", "assets/sfx/bback.mp3");
     this.load.audio('lvlsupmsc', 'assets/music/Musica nivel superado.mp3');
     this.load.audio('lvllostmsc', 'assets/music/Musica nivel perdido.mp3');
-		}
+		
 
 		this.load.on('progress', this.updateBar, {newGraphics:this.newGraphics,loadingText:loadingText});
 	}

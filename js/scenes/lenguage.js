@@ -6,9 +6,7 @@ class lenguage extends Phaser.Scene {
   }
 
   create() {
-    this.video=this.add.video(400, 300, 'Logo')
-    this.video.loop=false;
-    this.video.play(true);
+
     this.add.image(400, 300, "lenguage")
     bnextsfx = this.sound.add("bnextsfx");
     this.add
