@@ -6,7 +6,6 @@ class lenguage extends Phaser.Scene {
   }
 
   create() {
-
     this.add.image(400, 300, "lenguage")
     bnextsfx = this.sound.add("bnextsfx");
     this.add
@@ -35,7 +34,7 @@ class lenguage extends Phaser.Scene {
     .setInteractive()
     .on('pointerdown', () => {
       if (language == undefined) {
-        language = 'portugues'
+        language = 'portuguese'
       }
       bnextsfx.play();
       this.scene.start("main")

@@ -9,100 +9,100 @@ class main extends Phaser.Scene {
   create() {
     bbacksfx = this.sound.add("bbacksfx");
     if(language == 'spanish'){
-      play = 'bplay'
-      credits = 'bcredits'
-      help = 'bhelp'
-      exit = 'bexit'
-      helpscene = 'help'
-      ctrlsscene = 'controls'
-      creditsscene = 'credits'
-      infojabon = 'isoap'
-      infovacuna = 'ivaccine'
-      infoalcohol = 'ialcohol'
-      infobarbijo = 'ichinstrap'
-      infobarro = 'imud'
-      infovirus = 'ivirus'
-      infokid = 'ikid'
-      botcontroles = 'bcontrols'
-      btHTP = 'bhowtoplay'
-      losttxt = 'lost'
-      reintentarb = 'bretry'
-      menub = 'bmenu'
-      wintxt = 'overcome'
-      continueb = 'bcontinue'
-      retryb = 'bretry'
-      pausescene = 'pause'
-      resumeb = 'bresume'
-      helpb = 'bhelp2'
-      helpscene2 = 'help2'
-      ctrlsscene2 = 'controls2'
-      selectorscene = 'selector'
-      pvpb = 'bpvp'
-      ipvpb = 'ipvp'
+      bplay = 'bplay-es'
+      bcredits = 'bcredits-es'
+      bhelp = 'bhelp-es'
+      bexit = 'bexit-es'
+      shelp = 'help-es'
+      scontrols = 'controls-es'
+      scredits = 'credits-es'
+      isoap = 'isoap-es'
+      ivaccine = 'ivaccine-es'
+      ialcohol = 'ialcohol-es'
+      ichinstrap = 'ichinstrap-es'
+      imud = 'imud-es'
+      ivirus = 'ivirus-es'
+      ikid = 'ikid-es'
+      bcontrols = 'bcontrols-es'
+      bhowtoplay = 'bhowtoplay-es'
+      lost = 'lost-es'
+      bretry = 'bretry-es'
+      bmenu = 'bmenu-es'
+      overcome = 'overcome-es'
+      bcontinue = 'bcontinue-es'
+      bretry = 'bretry-es'
+      spause = 'pause-es'
+      bresume = 'bresume-es'
+      bhelp2 = 'bhelp2-es'
+      shelp2 = 'help2-es'
+      scontrols2 = 'controls2-es'
+      sselector = 'selector-es'
+      sselector2 = 'selector2-es'
+      iinf = 'iinf-es'
     }
     if (language == 'english'){
-      play = 'bplay-en'
-      credits = 'bcredits-en'
-      help = 'bhelp-en'
-      exit = 'bexit-en'
-      helpscene = 'HTP-en'
-      ctrlsscene = 'Ctrls-en'
-      creditsscene = 'credits-en'
-      infojabon = 'ijabon-en'
-      infovacuna = 'ivacuna-en'
-      infoalcohol = 'ialcohol-en'
-      infobarbijo = 'ibarbijo-en'
-      infobarro = 'ibarro-en'
-      infovirus = 'ivirus-en'
-      infokid = 'icontagiados-en'
-      botcontroles = 'bcontrols-en'
-      btHTP = 'bhtp-en'
-      losttxt = 'lvllost-en'
-      reintentarb = 'bretry-en'
-      menub = 'bmenu-en'
-      wintxt = 'lvlsup-en'
-      continueb = 'bnextlvl-en'
-      retryb = 'bretry-en'
-      pausescene = 'pause-en'
-      resumeb = 'bresume-en'
-      helpb = 'bhelp2-en'
-      helpscene2 = 'htp2-en'
-      ctrlsscene2 = 'controls2-en'
-      selectorscene = 'selector-en'
-      pvpb = 'bpvp-en'
-      ipvpb = 'ipvp-en'
+      bplay = 'bplay-en'
+      bcredits = 'bcredits-en'
+      bhelp = 'bhelp-en'
+      bexit = 'bexit-en'
+      shelp = 'help-en'
+      scontrols = 'controls-en'
+      scredits = 'credits-en'
+      isoap = 'isoap-en'
+      ivaccine = 'ivaccine-en'
+      ialcohol = 'ialcohol-en'
+      ichinstrap = 'ichinstrap-en'
+      imud = 'imud-en'
+      ivirus = 'ivirus-en'
+      ikid = 'ikid-en'
+      bcontrols = 'bcontrols-en'
+      bhowtoplay = 'bhowtoplay-en'
+      lost = 'lost-en'
+      bretry = 'bretry-en'
+      bmenu = 'bmenu-en'
+      overcome = 'overcome-en'
+      bcontinue = 'bcontinue-en'
+      bretry = 'bretry-en'
+      spause = 'pause-en'
+      bresume = 'bresume-en'
+      bhelp2 = 'bhelp2-en'
+      shelp2 = 'help2-en'
+      scontrols2 = 'controls2-en'
+      sselector = 'selector-en'
+      sselector2 = 'selector2-en'
+      iinf = 'iinf-en'
     }
-    if(language == 'portugues'){
-      play = 'bplay-pt'
-      credits = 'bcredits-pt'
-      help = 'bhelpM-pt'
-      exit = 'bexit-pt'
-      helpscene = 'Htp-pt'
-      ctrlsscene = 'ctrls-pt'
-      creditsscene = 'credits-pt'
-      infojabon = 'ijabon-pt'
-      infovacuna = 'ivacuna-pt'
-      infoalcohol = 'ialcohol-pt'
-      infobarbijo = 'ibarbijo-pt'
-      infobarro = 'ibarro-pt'
-      infovirus = 'ivirus-pt'
-      infokid = 'icontagiados-pt'
-      botcontroles = 'bcontrols'
-      btHTP = 'bhtp-pt'
-      losttxt = 'lvllost-pt'
-      reintentarb = 'bretry'
-      menub = 'bmenu-pt'
-      wintxt = 'lvlsup-pt'
-      continueb = 'bnextlvl-pt'
-      retryb = 'bretry-pt'
-      pausescene = 'pause'
-      resumeb = 'bresume-pt'
-      helpb = 'bhelp-pt'
-      helpscene2 = 'htp2-pt'
-      ctrlsscene2 = 'controls2-pt'
-      selectorscene = 'selector-pt'
-      pvpb = 'bpvp'
-      ipvpb = 'ipvp-pt'
+    if(language == 'portuguese'){
+      bplay = 'bplay-pt'
+      bcredits = 'bcredits-pt'
+      bhelp = 'bhelp-pt'
+      bexit = 'bexit-pt'
+      shelp = 'help-pt'
+      scontrols = 'controls-pt'
+      scredits = 'credits-pt'
+      isoap = 'isoap-pt'
+      ivaccine = 'ivaccine-pt'
+      ialcohol = 'ialcohol-pt'
+      ichinstrap = 'ichinstrap-pt'
+      imud = 'imud-pt'
+      ivirus = 'ivirus-pt'
+      ikid = 'ikid-pt'
+      bcontrols = 'bcontrols-es'
+      bhowtoplay = 'bhowtoplay-pt'
+      lost = 'lost-pt'
+      bretry = 'bretry-pt'
+      bmenu = 'bmenu-pt'
+      overcome = 'overcome-pt'
+      bcontinue = 'bcontinue-pt'
+      bretry = 'bretry-pt'
+      spause = 'pause-es'
+      bresume = 'bresume-pt'
+      bhelp2 = 'bhelp2-pt'
+      shelp2 = 'help2-es'
+      scontrols2 = 'controls2-pt'
+      sselector = 'selector-pt'
+      sselector2 = 'selector2-pt'
+      iinf = 'iinf-pt'
     }
     if (track == undefined && music == true) {
       track = this.sound.add("mainmsc", { loop: true });
@@ -110,7 +110,7 @@ class main extends Phaser.Scene {
     }
     this.add.image(400, 300, "menu");
     this.add
-      .image(400, 260, play)
+      .image(400, 260, bplay)
       .setInteractive()
       .on("pointerdown", () => {
         this.scene.start("selector");
@@ -119,7 +119,7 @@ class main extends Phaser.Scene {
         }
       });
     this.add
-      .image(400, 330, credits)
+      .image(400, 330, bcredits)
       .setInteractive()
       .on("pointerdown", () => {
         this.scene.start("credits");
@@ -128,7 +128,7 @@ class main extends Phaser.Scene {
         }
       });
     this.add
-      .image(710, 558, help)
+      .image(710, 558, bhelp)
       .setInteractive()
       .on("pointerdown", () => {
         this.scene.start("help");
@@ -137,7 +137,7 @@ class main extends Phaser.Scene {
         }
       });
     this.add
-      .image(90, 558, exit)
+      .image(90, 558, bexit)
       .setInteractive()
       .on("pointerdown", () => {
         if (music == true) {

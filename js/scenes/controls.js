@@ -5,7 +5,7 @@ class controls extends Phaser.Scene {
 
   create() {
     //Seteamos el background del menú.
-    this.add.image(400, 300, ctrlsscene);
+    this.add.image(400, 300, scontrols);
 
     //Creamos los botones y definimos sus funciones.
     this.add
@@ -19,7 +19,7 @@ class controls extends Phaser.Scene {
       });
 
     this.add
-      .image(677, 514, btHTP)
+      .image(677, 514, bhowtoplay)
       .setInteractive()
       .on("pointerdown", () => {
         this.scene.start("help");

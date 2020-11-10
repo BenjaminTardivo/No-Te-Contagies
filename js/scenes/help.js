@@ -6,7 +6,7 @@ class help extends Phaser.Scene {
   create() {
     //Seteamos el background del menú.
     this.add
-      .image(400, 300, helpscene)
+      .image(400, 300, shelp)
       .setInteractive()
       .on("pointerover", () => {
         if (iobject !== undefined) {
@@ -23,7 +23,7 @@ class help extends Phaser.Scene {
         if (iobject !== undefined) {
           iobject.destroy();
         }
-        iobject = this.add.image(163, 330, infojabon);
+        iobject = this.add.image(163, 330, isoap);
       });
 
     this.add
@@ -33,7 +33,7 @@ class help extends Phaser.Scene {
         if (iobject !== undefined) {
           iobject.destroy();
         }
-        iobject = this.add.image(298, 328, infovacuna);
+        iobject = this.add.image(298, 328, ivaccine);
       });
 
     this.add
@@ -43,7 +43,7 @@ class help extends Phaser.Scene {
         if (iobject !== undefined) {
           iobject.destroy();
         }
-        iobject = this.add.image(168, 413, infoalcohol);
+        iobject = this.add.image(168, 413, ialcohol);
       });
 
     this.add
@@ -53,7 +53,7 @@ class help extends Phaser.Scene {
         if (iobject !== undefined) {
           iobject.destroy();
         }
-        iobject = this.add.image(295, 416, infobarbijo);
+        iobject = this.add.image(295, 416, ichinstrap);
       });
 
     this.add
@@ -63,7 +63,7 @@ class help extends Phaser.Scene {
         if (iobject !== undefined) {
           iobject.destroy();
         }
-        iobject = this.add.image(506, 328, infobarro);
+        iobject = this.add.image(506, 328, imud);
       });
 
     this.add
@@ -73,7 +73,7 @@ class help extends Phaser.Scene {
         if (iobject !== undefined) {
           iobject.destroy();
         }
-        iobject = this.add.image(648, 328, infovirus);
+        iobject = this.add.image(648, 328, ivirus);
       });
 
     this.add
@@ -83,7 +83,7 @@ class help extends Phaser.Scene {
         if (iobject !== undefined) {
           iobject.destroy();
         }
-        iobject = this.add.image(574, 407, infokid);
+        iobject = this.add.image(574, 407, ikid);
       });
 
     //Creación de botones y seteo de funciones de los mismos.
@@ -98,7 +98,7 @@ class help extends Phaser.Scene {
       });
 
     this.add
-      .image(677, 514, botcontroles)
+      .image(677, 514, bcontrols)
       .setInteractive()
       .on("pointerdown", () => {
         this.scene.start("controls")

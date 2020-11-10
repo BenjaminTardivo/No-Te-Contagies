@@ -5,7 +5,7 @@ class credits extends Phaser.Scene {
 
   create() {
     //seteamos el background del menú.
-    this.add.image(400, 300, creditsscene);
+    this.add.image(400, 300, scredits);
 
     //botones.
     this.add

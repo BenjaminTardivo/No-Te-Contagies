@@ -2,6 +2,7 @@ import preloader from "./preloader.js";
 import lenguage from "./lenguage.js";
 import main from "./main.js";
 import selector from "./selector.js";
+import selector2 from "./selector2.js";
 import gameplay from "./gameplay.js";
 import credits from "./credits.js";
 import help from "./help.js";
@@ -23,7 +24,7 @@ var config = {
       debug: false, //si deseamos habilitar o no el debugging (permite detectar errores en el código).
     },
   },
-  scene: [preloader, lenguage, main, selector, gameplay, credits, help, controls], //escenas que abarcan al juego (menús, niveles, etc).
+  scene: [preloader, lenguage, main, selector, selector2, gameplay, credits, help, controls], //escenas que abarcan al juego (menús, niveles, etc).
 };
 
 //inicializamos phaser con los ajustes definidos anteriormente (variable "config" - línea 2).
