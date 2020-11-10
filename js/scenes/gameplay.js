@@ -29,6 +29,13 @@ class gameplay extends Phaser.Scene {
     if (level == 1) {
       this.add.image(400, 300, "background");
       player = new Player({ scene: this, x: 400, y: 300, texture: "player" });
+      if (music == true)  {
+      lvlmsc = this.sound.add('lvl1msc', { loop: true });
+      lvlmsc.play();
+      }
+    } else if (level == 2) {
+      this.add.image(400, 300, "background2");
+      player = new Player({ scene: this, x: 400, y: 150, texture: "player" });
       this.anims.create({
         key: "playBall",
         frames: this.anims.generateFrameNumbers("ball", {
@@ -54,13 +61,6 @@ class gameplay extends Phaser.Scene {
         null,
         this
       );
-      if (music == true)  {
-      lvlmsc = this.sound.add('lvl1msc', { loop: true });
-      lvlmsc.play();
-      }
-    } else if (level == 2) {
-      this.add.image(400, 300, "background2");
-      player = new Player({ scene: this, x: 400, y: 150, texture: "player" });
       trees = this.physics.add.staticGroup();
       trees
         .create(650, 150, "tree")
@@ -74,6 +74,8 @@ class gameplay extends Phaser.Scene {
         .setOrigin(0.57, 0.43);
       font = this.physics.add.staticGroup();
       font.create(400, 300, "font").setImmovable(true).setSize(145, 140);
+      this.physics.add.collider(ball, trees);
+      this.physics.add.collider(ball, font);
       this.physics.add.collider(player, trees);
       this.physics.add.collider(player, font);
       if (music == true) {
@@ -844,6 +846,8 @@ class gameplay extends Phaser.Scene {
     if (iobject !== undefined) {
       iobject.destroy();
       iobject = undefined;
+    }
+    if (timedEvent4 !== undefined) {
       timedEvent4.destroy();
     }
   }
@@ -885,7 +889,7 @@ class gameplay extends Phaser.Scene {
       lvlfmsc = undefined;
     }
 
-    if (level == 1) {
+    if (level == 2) {
       ball.anims.play("stopBall", true);
     } else if (level !== 1 && stopAnim == "stop2") {
       timedEvent3.destroy();
@@ -963,7 +967,7 @@ class gameplay extends Phaser.Scene {
     timedEvent.paused = true;
     player.anims.play("victory").setScale(0.43);
     
-    if (level == 1) {
+    if (level == 2) {
       ball.anims.play("stopBall", true);
     } else if (level !== 1 && stopAnim == "stop2") {
       timedEvent3.destroy();
@@ -1136,7 +1140,7 @@ class gameplay extends Phaser.Scene {
       iobject.destroy();
       timedEvent4.destroy();
     }
-    if (level == 1) {
+    if (level == 2) {
       ball.anims.play("stopBall", true);
     } else if (level == 3) {
       paper.anims.play("stopPaper", true);
@@ -1189,7 +1193,7 @@ class gameplay extends Phaser.Scene {
     button2.destroy();
     button3.destroy();
 
-    if (level == 1) {
+    if (level == 2) {
       if (ball.body.velocity.x !== 0 || ball.body.velocity.y !== 0) {
         ball.anims.play("playBall", true);
       }

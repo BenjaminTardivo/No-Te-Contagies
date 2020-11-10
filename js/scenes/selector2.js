@@ -54,7 +54,7 @@ class selector2 extends Phaser.Scene {
           this.scene.start("gameplay");
         });
     this.add
-    .image(132, 131, "bback")
+    .image(102, 131, "bback")
     .setInteractive()
     .on("pointerdown", () => {
       if (sfx == true) {
