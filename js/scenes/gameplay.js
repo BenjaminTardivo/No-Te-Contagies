@@ -530,6 +530,38 @@ class gameplay extends Phaser.Scene {
     }
   }
 
+    noControls() {
+      if (isMobile.any())
+        b1.destroy(),
+        b2.destroy(),
+        b3.destroy(),
+        b4.destroy(),
+        b5.destroy(),
+        b6.destroy(),
+        b7.destroy(),
+        b8.destroy();
+        if (up == true) {
+          up = false;
+        } else if (down == true) {
+          down = false;
+        } else if (left == true) {
+          left = false;
+        } else if (right == true) {
+          right = false;
+        } else if (upLeft == true) {
+          upLeft = false;
+        } else if (upRight == true) {
+          upRight = false;
+        } else if (downLeft == true) {
+          downLeft = false;
+        } else if (downRight == true) {
+          downRight = false;
+        }
+      else {
+        cursors = undefined;
+      }
+    }
+
   objects() {
     //Randomización del respawn de objetos.
     if (level == 1) {
@@ -661,18 +693,7 @@ class gameplay extends Phaser.Scene {
       }
       lives = 3;
       score = 0;
-      if (isMobile.any())
-        b1.destroy(),
-          b2.destroy(),
-          b3.destroy(),
-          b4.destroy(),
-          b5.destroy(),
-          b6.destroy(),
-          b7.destroy(),
-          b8.destroy();
-      else {
-        cursors = undefined;
-      }
+      this.noControls();
       this.gameover();
     }
     if (score >= 200 && inf == false) {
@@ -694,18 +715,7 @@ class gameplay extends Phaser.Scene {
       }
       lives = 3;
       score = 0;
-      if (isMobile.any())
-        b1.destroy(),
-          b2.destroy(),
-          b3.destroy(),
-          b4.destroy(),
-          b5.destroy(),
-          b6.destroy(),
-          b7.destroy(),
-          b8.destroy();
-      else {
-        cursors = undefined;
-      }
+      this.noControls();
       this.lvlfinish();
     }
     if (score >= 200 && inf == true) {
@@ -1211,18 +1221,7 @@ class gameplay extends Phaser.Scene {
     timedEvent.paused = true;
     bpause.destroy();
     this.physics.pause();
-    if (isMobile.any())
-      b1.destroy(),
-        b2.destroy(),
-        b3.destroy(),
-        b4.destroy(),
-        b5.destroy(),
-        b6.destroy(),
-        b7.destroy(),
-        b8.destroy();
-    else {
-      cursors = undefined;
-    }
+    this.noControls();
     player.anims.play(stopAnim);
     if (timedEvent4 !== undefined && iobject !== undefined) {
       iobject.destroy();
