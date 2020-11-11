@@ -5,15 +5,15 @@ import Ball from "../classes/ball.js";
 import Paper from "../classes/paper.js";
 import Bench from "../classes/bench.js";
 import Mud from "../classes/mud.js";
-import {velMud} from "../classes/mud.js";
+import { velMud } from "../classes/mud.js";
 import Virus from "../classes/virus.js";
 import { velVirus } from "../classes/virus.js";
 import Soap from "../classes/soap.js";
 import { velSoap } from "../classes/soap.js";
 import Alcohol from "../classes/alcohol.js";
-import {velAlcohol} from "../classes/alcohol.js";
+import { velAlcohol } from "../classes/alcohol.js";
 import Chinstrap from "../classes/chinstrap.js";
-import {velChinstrap} from "../classes/chinstrap.js";
+import { velChinstrap } from "../classes/chinstrap.js";
 import Vaccine from "../classes/vaccine.js";
 import { velVaccine } from "../classes/vaccine.js";
 
@@ -26,16 +26,44 @@ class gameplay extends Phaser.Scene {
 
   create() {
     //Creación de: background, personaje y pelota (si es necesario).
+    if (level == 1 || level == 2) {
+      this.anims.create({
+        key: "playBall",
+        frames: this.anims.generateFrameNumbers("ball", {
+          start: 0,
+          end: 5,
+        }),
+        framerate: 10,
+        repeat: -1,
+      });
+      this.anims.create({
+        key: "stopBall",
+        frames: [{ key: "ball", frame: 2 }],
+        framerate: 10,
+        repeat: 0,
+      });
+    }
     if (level == 1) {
       this.add.image(400, 300, "background");
       player = new Player({ scene: this, x: 400, y: 300, texture: "player" });
-      if (music == true)  {
-      lvlmsc = this.sound.add('lvl1msc', { loop: true });
-      lvlmsc.play();
+      ball = new Ball({ scene: this, x: 280, y: 350, texture: "ball" });
+      this.physics.add.collider(
+        player,
+        ball,
+        () => {
+          ball.anims.play("playBall", true);
+        },
+        null,
+        this
+      );
+      if (music == true) {
+        lvlmsc = this.sound.add("lvl1msc", { loop: true });
+        lvlmsc.play();
       }
     } else if (level == 2) {
       this.add.image(400, 300, "background2");
       player = new Player({ scene: this, x: 400, y: 150, texture: "player" });
+      ball = new Ball({ scene: this, x: 280, y: 350, texture: "ball" });
       trees = this.physics.add.staticGroup();
       trees
         .create(650, 150, "tree")
@@ -49,204 +77,192 @@ class gameplay extends Phaser.Scene {
         .setOrigin(0.57, 0.43);
       font = this.physics.add.staticGroup();
       font.create(400, 300, "font").setImmovable(true).setSize(145, 140);
+      this.physics.add.collider(
+        player,
+        ball,
+        () => {
+          ball.anims.play("playBall", true);
+        },
+        null,
+        this
+      );
       this.physics.add.collider(player, trees);
       this.physics.add.collider(player, font);
+      this.physics.add.collider(ball, trees);
+      this.physics.add.collider(ball, font);
       if (music == true) {
-      lvlmsc = this.sound.add('lvl2msc', { loop: true });
-      lvlmsc.play();
+        lvlmsc = this.sound.add("lvl2msc", { loop: true });
+        lvlmsc.play();
       }
     } else if (level == 3) {
-        this.add.image(400, 300, "background3");
-        player = new Player({ scene: this, x: 400, y: 222, texture: "player" });
-        if (music == true) {
-          lvlmsc = this.sound.add('lvl3msc', { loop: true });
-          lvlmsc.play();
-        }
-        bench = [
-          new Bench({scene: this, x: 175, y: 135, texture: "bench"}),
-          new Bench({scene: this, x: 400, y: 135, texture: "bench2"}),
-          new Bench({scene: this, x: 627, y: 135, texture: "bench3"}),
-          new Bench({scene: this, x: 175, y: 310, texture: "bench4"}),
-          new Bench({scene: this, x: 400, y: 310, texture: "bench5"}),
-          new Bench({scene: this, x: 627, y: 310, texture: "bench6"}),
-          new Bench({scene: this, x: 175, y: 490, texture: "bench7"}),
-          new Bench({scene: this, x: 400, y: 490, texture: "bench8"}),
-          new Bench({scene: this, x: 627, y: 490, texture: "bench9"})
-        ]
-
-        //seteamos las animaciones de los niños infectados.
-        this.anims.create({
-          key: "upKid", //Definimos nombre a la animación.
-          frames: this.anims.generateFrameNumbers("kid", { start: 0, end: 4 }), //definimos los frames que abarca.
-          framerate: 10, //velocidad de frames/frames por segundo.
-          repeat: -1, //cuantas veces se repite (0 = infinitamente).
-        });
-        this.anims.create({
-          key: "downKid",
-          frames: this.anims.generateFrameNumbers("kid", { start: 5, end: 9 }),
-          framerate: 10,
-          repeat: -1,
-        });
-        this.anims.create({
-          key: "rightKid",
-          frames: this.anims.generateFrameNumbers("kid", {
-            start: 10,
-            end: 15,
-          }),
-          framerate: 10,
-          repeat: -1,
-        });
-        this.anims.create({
-          key: "leftKid",
-          frames: this.anims.generateFrameNumbers("kid", {
-            start: 16,
-            end: 21,
-          }),
-          framerate: 10,
-          repeat: -1,
-        });
-        this.anims.create({
-          key: "stopKid",
-          frames: [{ key: "kid", frame: 5 }],
-          framerate: 10,
-          repeat: 0,
-        });
-        this.anims.create({
-          key: "upKid2", //Definimos nombre a la animación.
-          frames: this.anims.generateFrameNumbers("kid2", { start: 0, end: 4 }), //definimos los frames que abarca.
-          framerate: 10, //velocidad de frames/frames por segundo.
-          repeat: -1, //cuantas veces se repite (0 = infinitamente).
-        });
-        this.anims.create({
-          key: "downKid2",
-          frames: this.anims.generateFrameNumbers("kid2", { start: 5, end: 9 }),
-          framerate: 10,
-          repeat: -1,
-        });
-        this.anims.create({
-          key: "rightKid2",
-          frames: this.anims.generateFrameNumbers("kid2", {
-            start: 10,
-            end: 15,
-          }),
-          framerate: 10,
-          repeat: -1,
-        });
-        this.anims.create({
-          key: "leftKid2",
-          frames: this.anims.generateFrameNumbers("kid2", {
-            start: 16,
-            end: 21,
-          }),
-          framerate: 10,
-          repeat: -1,
-        });
-        this.anims.create({
-          key: "stopKid2",
-          frames: [{ key: "kid2", frame: 5 }],
-          framerate: 10,
-          repeat: 0,
-        });
-        this.anims.create({
-          key: "upKid3", //Definimos nombre a la animación.
-          frames: this.anims.generateFrameNumbers("kid3", { start: 0, end: 4 }), //definimos los frames que abarca.
-          framerate: 10, //velocidad de frames/frames por segundo.
-          repeat: -1, //cuantas veces se repite (0 = infinitamente).
-        });
-        this.anims.create({
-          key: "downKid3",
-          frames: this.anims.generateFrameNumbers("kid3", { start: 5, end: 9 }),
-          framerate: 10,
-          repeat: -1,
-        });
-        this.anims.create({
-          key: "rightKid3",
-          frames: this.anims.generateFrameNumbers("kid3", {
-            start: 10,
-            end: 15,
-          }),
-          framerate: 10,
-          repeat: -1,
-        });
-        this.anims.create({
-          key: "leftKid3",
-          frames: this.anims.generateFrameNumbers("kid3", {
-            start: 16,
-            end: 21,
-          }),
-          framerate: 10,
-          repeat: -1,
-        });
-        this.anims.create({
-          key: "stopKid3",
-          frames: [{ key: "kid3", frame: 5 }],
-          framerate: 10,
-          repeat: 0,
-        });
-        this.anims.create({
-          key: "playPaper",
-          frames: this.anims.generateFrameNumbers("paper", {
-            start: 0,
-            end: 7,
-          }),
-          framerate: 10,
-          repeat: -1,
-        });
-        this.anims.create({
-          key: "stopPaper",
-          frames: [{ key: "paper", frame: 0 }],
-          framerate: 10,
-          repeat: 0,
-        });
-        paper = new Paper({ scene: this, x: 280, y: 350, texture: "paper" });
-        this.physics.add.collider(player, paper, () => {paper.anims.play("playPaper")}, null, this);
-        this.physics.add.collider(player, bench);
-        this.physics.add.collider(paper, bench);
-    }
-      if (level !== 3) {
-        this.anims.create({
-          key: "playBall",
-          frames: this.anims.generateFrameNumbers("ball", {
-            start: 0,
-            end: 5,
-          }),
-          framerate: 10,
-          repeat: -1,
-        });
-        this.anims.create({
-          key: "stopBall",
-          frames: [{ key: "ball", frame: 2 }],
-          framerate: 10,
-          repeat: 0,
-        });
-        ball = new Ball({ scene: this, x: 280, y: 350, texture: "ball" });
-        this.physics.add.collider(
-          player,
-          ball,
-          () => {
-            ball.anims.play("playBall", true);
-          },
-          null,
-          this
-        );
-        if (level == 2) {
-          this.physics.add.collider(ball, trees);
-          this.physics.add.collider(ball, font);
-        }
+      this.add.image(400, 300, "background3");
+      player = new Player({ scene: this, x: 400, y: 222, texture: "player" });
+      if (music == true) {
+        lvlmsc = this.sound.add("lvl3msc", { loop: true });
+        lvlmsc.play();
       }
+      bench = [
+        new Bench({ scene: this, x: 175, y: 135, texture: "bench" }),
+        new Bench({ scene: this, x: 400, y: 135, texture: "bench2" }),
+        new Bench({ scene: this, x: 627, y: 135, texture: "bench3" }),
+        new Bench({ scene: this, x: 175, y: 310, texture: "bench4" }),
+        new Bench({ scene: this, x: 400, y: 310, texture: "bench5" }),
+        new Bench({ scene: this, x: 627, y: 310, texture: "bench6" }),
+        new Bench({ scene: this, x: 175, y: 490, texture: "bench7" }),
+        new Bench({ scene: this, x: 400, y: 490, texture: "bench8" }),
+        new Bench({ scene: this, x: 627, y: 490, texture: "bench9" }),
+      ];
+
+      //seteamos las animaciones de los niños infectados.
+      this.anims.create({
+        key: "upKid", //Definimos nombre a la animación.
+        frames: this.anims.generateFrameNumbers("kid", { start: 0, end: 4 }), //definimos los frames que abarca.
+        framerate: 10, //velocidad de frames/frames por segundo.
+        repeat: -1, //cuantas veces se repite (0 = infinitamente).
+      });
+      this.anims.create({
+        key: "downKid",
+        frames: this.anims.generateFrameNumbers("kid", { start: 5, end: 9 }),
+        framerate: 10,
+        repeat: -1,
+      });
+      this.anims.create({
+        key: "rightKid",
+        frames: this.anims.generateFrameNumbers("kid", {
+          start: 10,
+          end: 15,
+        }),
+        framerate: 10,
+        repeat: -1,
+      });
+      this.anims.create({
+        key: "leftKid",
+        frames: this.anims.generateFrameNumbers("kid", {
+          start: 16,
+          end: 21,
+        }),
+        framerate: 10,
+        repeat: -1,
+      });
+      this.anims.create({
+        key: "stopKid",
+        frames: [{ key: "kid", frame: 5 }],
+        framerate: 10,
+        repeat: 0,
+      });
+      this.anims.create({
+        key: "upKid2", //Definimos nombre a la animación.
+        frames: this.anims.generateFrameNumbers("kid2", { start: 0, end: 4 }), //definimos los frames que abarca.
+        framerate: 10, //velocidad de frames/frames por segundo.
+        repeat: -1, //cuantas veces se repite (0 = infinitamente).
+      });
+      this.anims.create({
+        key: "downKid2",
+        frames: this.anims.generateFrameNumbers("kid2", { start: 5, end: 9 }),
+        framerate: 10,
+        repeat: -1,
+      });
+      this.anims.create({
+        key: "rightKid2",
+        frames: this.anims.generateFrameNumbers("kid2", {
+          start: 10,
+          end: 15,
+        }),
+        framerate: 10,
+        repeat: -1,
+      });
+      this.anims.create({
+        key: "leftKid2",
+        frames: this.anims.generateFrameNumbers("kid2", {
+          start: 16,
+          end: 21,
+        }),
+        framerate: 10,
+        repeat: -1,
+      });
+      this.anims.create({
+        key: "stopKid2",
+        frames: [{ key: "kid2", frame: 5 }],
+        framerate: 10,
+        repeat: 0,
+      });
+      this.anims.create({
+        key: "upKid3", //Definimos nombre a la animación.
+        frames: this.anims.generateFrameNumbers("kid3", { start: 0, end: 4 }), //definimos los frames que abarca.
+        framerate: 10, //velocidad de frames/frames por segundo.
+        repeat: -1, //cuantas veces se repite (0 = infinitamente).
+      });
+      this.anims.create({
+        key: "downKid3",
+        frames: this.anims.generateFrameNumbers("kid3", { start: 5, end: 9 }),
+        framerate: 10,
+        repeat: -1,
+      });
+      this.anims.create({
+        key: "rightKid3",
+        frames: this.anims.generateFrameNumbers("kid3", {
+          start: 10,
+          end: 15,
+        }),
+        framerate: 10,
+        repeat: -1,
+      });
+      this.anims.create({
+        key: "leftKid3",
+        frames: this.anims.generateFrameNumbers("kid3", {
+          start: 16,
+          end: 21,
+        }),
+        framerate: 10,
+        repeat: -1,
+      });
+      this.anims.create({
+        key: "stopKid3",
+        frames: [{ key: "kid3", frame: 5 }],
+        framerate: 10,
+        repeat: 0,
+      });
+      this.anims.create({
+        key: "playPaper",
+        frames: this.anims.generateFrameNumbers("paper", {
+          start: 0,
+          end: 7,
+        }),
+        framerate: 10,
+        repeat: -1,
+      });
+      this.anims.create({
+        key: "stopPaper",
+        frames: [{ key: "paper", frame: 0 }],
+        framerate: 10,
+        repeat: 0,
+      });
+      paper = new Paper({ scene: this, x: 280, y: 350, texture: "paper" });
+      this.physics.add.collider(
+        player,
+        paper,
+        () => {
+          paper.anims.play("playPaper");
+        },
+        null,
+        this
+      );
+      this.physics.add.collider(player, bench);
+      this.physics.add.collider(paper, bench);
+    }
 
     bpause = this.add
       .image(770, 30, "bpause")
       .setInteractive()
       .on("pointerdown", () => {
-        this.pause()
+        this.pause();
         if (sfx == true) {
           bnextsfx.play();
-        }      
+        }
       });
     bmsc = this.add
       .image(684, 30, bmscText)
-      .setScale(1.20)
+      .setScale(1.2)
       .setInteractive()
       .on("pointerdown", () => {
         if (music == true) {
@@ -260,13 +276,13 @@ class gameplay extends Phaser.Scene {
           bmscText = "bmscon";
           bbacksfx.play();
           if (level == 1) {
-            lvlmsc = this.sound.add('lvl1msc', { loop: true });
+            lvlmsc = this.sound.add("lvl1msc", { loop: true });
             lvlmsc.play();
           } else if (level == 2) {
-            lvlmsc = this.sound.add('lvl2msc', { loop: true });
+            lvlmsc = this.sound.add("lvl2msc", { loop: true });
             lvlmsc.play();
           } else if (level == 3) {
-            lvlmsc = this.sound.add('lvl3msc', { loop: true });
+            lvlmsc = this.sound.add("lvl3msc", { loop: true });
             lvlmsc.play();
           }
           music = true;
@@ -274,7 +290,7 @@ class gameplay extends Phaser.Scene {
       });
     bsfx = this.add
       .image(724, 30, bsfxText)
-      .setScale(1.20)
+      .setScale(1.2)
       .setInteractive()
       .on("pointerdown", () => {
         if (sfx == true) {
@@ -382,14 +398,59 @@ class gameplay extends Phaser.Scene {
       });
     }
 
+    this.controls();
+
     //creación de colliders que irán eliminando los objetos a medida que colisionen con ellos.
     collider = [
-      new Collider({scene: this, x: -60, y: 300, texture: "collider"}),
-      new Collider({scene: this, x: 860, y: 300, texture: "collider"}),
-      new Collider({scene: this, x: 400, y: -60, texture: "collider2"}),
-      new Collider({scene: this, x: 400, y: 660, texture: "collider2"})
-    ]
+      new Collider({ scene: this, x: -60, y: 300, texture: "collider" }),
+      new Collider({ scene: this, x: 860, y: 300, texture: "collider" }),
+      new Collider({ scene: this, x: 400, y: -60, texture: "collider2" }),
+      new Collider({ scene: this, x: 400, y: 660, texture: "collider2" }),
+    ];
 
+    //seteo de velocidad de movimiento del personaje y contador de respawn de vacunas.
+    countvac = 0;
+    velX = -220;
+    velX2 = 220;
+    velY = 220;
+    velY2 = -220;
+    vel2X = -170;
+    vel2X2 = 170;
+    vel2Y = 170;
+    vel2Y2 = -170;
+
+    //creacion el evento para la generacion de objetos.
+    delay = 750;
+    timedEvent = this.time.addEvent({
+      delay: delay,
+      callback: this.objects,
+      callbackScope: this,
+      loop: true,
+    });
+
+    //creacion la barra de inmunidad
+    progressBar = this.add.graphics();
+    bar = this.add.image(165, 25, "bar");
+
+    progressBar.clear();
+    progressBar.fillStyle(0xffff1, 1);
+    //creacion de los corazones
+    hearts = this.add.group({
+      key: "heart",
+      repeat: 2,
+      setXY: {
+        x: 36,
+        y: 567,
+        stepX: 45,
+      },
+      setScale: {
+        x: 0.06,
+        y: 0.06,
+      },
+    });
+  }
+
+  controls() {
     //creacion de los controles.
     if (isMobile.any())
       (b1 = this.add
@@ -465,50 +526,8 @@ class gameplay extends Phaser.Scene {
             (downRight = false), (b8.alpha += 1);
           }));
     else {
-      (cursors = this.input.keyboard.createCursorKeys(), this);
+      (cursors = this.input.keyboard.createCursorKeys()), this;
     }
-
-    //seteo de velocidad de movimiento del personaje y contador de respawn de vacunas.
-    countvac = 0;
-    velX = -220;
-    velX2 = 220;
-    velY = 220;
-    velY2 = -220;
-    vel2X = -170;
-    vel2X2 = 170;
-    vel2Y = 170;
-    vel2Y2 = -170;
-
-    //creacion el evento para la generacion de objetos.
-    delay = 750;
-    timedEvent = this.time.addEvent({
-      delay: delay,
-      callback: this.objects,
-      callbackScope: this,
-      loop: true,
-    });
-
-    //creacion la barra de inmunidad
-    progressBar = this.add.graphics();
-    bar = this.add.image(165, 25, 'bar');
-
-
-    progressBar.clear();
-    progressBar.fillStyle(0xffff1, 1);
-    //creacion de los corazones
-    hearts = this.add.group({
-      key: "heart",
-      repeat: 2,
-      setXY: {
-        x: 36,
-        y: 567,
-        stepX: 45,
-      },
-      setScale: {
-        x: 0.06,
-        y: 0.06,
-      },
-    });
   }
 
   objects() {
@@ -544,48 +563,83 @@ class gameplay extends Phaser.Scene {
       velObj = -170;
     }
     //Respawn de objetos.
-      if (pattern < 0.1 && countvac == 0) {
-        vaccine = new Vaccine({ scene: this, x: pattern3, y: pattern4 });
-        countvac++;
-        velVaccine();
-      } else if (pattern >= 0 && pattern < 0.35) {
-        virus = new Virus({ scene: this, x: pattern3, y: pattern4 });
-        velVirus();
-      } else if (pattern >= 0.35 && pattern < 0.7) {
-        soap = new Soap({ scene: this, x: pattern3, y: pattern4 });
-        velSoap();
-      } else if (pattern > 0.7 && pattern < 0.8 && stopAnim == "stop" && countchins < 3 || countchins == undefined) {
-        chinstrap = new Chinstrap({ scene: this, x: pattern3, y: pattern4 });
-        velChinstrap();
-      } else if (pattern >= 0.7 && pattern < 1.05) {
-        mud = new Mud({ scene: this, x: pattern3, y: pattern4 });
-        velMud();
-      } else if (pattern >= 1.05 && pattern < 1.4) {
-        alcohol = new Alcohol({ scene: this, x: pattern3, y: pattern4 });
-        velAlcohol();
-      } else if (pattern >= 1.4 && countKid == 0) {
-        posKid();
-        kid = new Kid({ scene: this, x: pattern3, y: pattern4, texture: whatKid });
-        countKid += 1;
-        velKid();
-      }
+    if (pattern < 0.1 && countvac == 0) {
+      vaccine = new Vaccine({ scene: this, x: pattern3, y: pattern4 });
+      countvac++;
+      velVaccine();
+    } else if (pattern >= 0 && pattern < 0.35) {
+      virus = new Virus({ scene: this, x: pattern3, y: pattern4 });
+      velVirus();
+    } else if (pattern >= 0.35 && pattern < 0.7) {
+      soap = new Soap({ scene: this, x: pattern3, y: pattern4 });
+      velSoap();
+    } else if (
+      (pattern > 0.7 &&
+        pattern < 0.8 &&
+        stopAnim == "stop" &&
+        countchins < 3) ||
+      countchins == undefined
+    ) {
+      chinstrap = new Chinstrap({ scene: this, x: pattern3, y: pattern4 });
+      velChinstrap();
+    } else if (pattern >= 0.7 && pattern < 1.05) {
+      mud = new Mud({ scene: this, x: pattern3, y: pattern4 });
+      velMud();
+    } else if (pattern >= 1.05 && pattern < 1.4) {
+      alcohol = new Alcohol({ scene: this, x: pattern3, y: pattern4 });
+      velAlcohol();
+    } else if (pattern >= 1.4 && countKid == 0) {
+      posKid();
+      kid = new Kid({
+        scene: this,
+        x: pattern3,
+        y: pattern4,
+        texture: whatKid,
+      });
+      countKid += 1;
+      velKid();
+    }
 
     //creacion de colliders.
     this.physics.add.overlap(player, mud, this.mudHit, null, this); //collider que ejecuta una función al agarrar un barro.
     this.physics.add.overlap(player, virus, this.virusHit, null, this); //collider que ejecuta una función al agarrar un virus.
     this.physics.add.overlap(player, soap, this.collectSoap, null, this); //collider que ejecuta una función al agarrar un jabón.
     this.physics.add.overlap(player, alcohol, this.collectAlcohol, null, this); //collider que ejecuta una función al agarrar alcohol.
-    this.physics.add.overlap(player, chinstrap, this.collectChinstrap, null, this); //collider que ejecuta una función al agarrar una vacuna.
+    this.physics.add.overlap(
+      player,
+      chinstrap,
+      this.collectChinstrap,
+      null,
+      this
+    ); //collider que ejecuta una función al agarrar una vacuna.
     this.physics.add.overlap(player, vaccine, this.vaccinated, null, this); //collider que ejecutan la función de boost de velocidad por 10s.
     this.physics.add.collider(collider, mud, this.mudErrase, null, this); //collider que ejecuta una función cuando un barro choca con un collider.
     this.physics.add.collider(collider, virus, this.virusErrase, null, this); //collider que ejecuta una función cuando un virus choca con un collider.
     this.physics.add.collider(collider, soap, this.soapErrase, null, this); //collider que ejecuta una función cuando un jabón choca con un collider.
-    this.physics.add.collider(collider, alcohol, this.alcoholErrase, null, this); //collider que ejecuta una función cuando un alcohol choca con un collider.
-    this.physics.add.collider(collider, vaccine, this.vaccineErrase, null, this); //collider que ejecuta una función cuando una vacuna choca con un collider.
-    this.physics.add.collider(collider, chinstrap, this.chinstrapErrase, null, this); //collider que ejecuta una función cuando un barbijo choca con un collider.
+    this.physics.add.collider(
+      collider,
+      alcohol,
+      this.alcoholErrase,
+      null,
+      this
+    ); //collider que ejecuta una función cuando un alcohol choca con un collider.
+    this.physics.add.collider(
+      collider,
+      vaccine,
+      this.vaccineErrase,
+      null,
+      this
+    ); //collider que ejecuta una función cuando una vacuna choca con un collider.
+    this.physics.add.collider(
+      collider,
+      chinstrap,
+      this.chinstrapErrase,
+      null,
+      this
+    ); //collider que ejecuta una función cuando un barbijo choca con un collider.
     this.physics.add.collider(collider, kid, this.kidErrase, null, this); //collider que ejecuta una función cuando un chico choca con un collider.
     if (level > 2) {
-    this.physics.add.collider(player, kid, this.kidHit, null, this );
+      this.physics.add.collider(player, kid, this.kidHit, null, this);
       this.physics.add.collider(bench, kid);
     }
   }
@@ -607,7 +661,18 @@ class gameplay extends Phaser.Scene {
       }
       lives = 3;
       score = 0;
-      cursors = undefined;
+      if (isMobile.any())
+        b1.destroy(),
+          b2.destroy(),
+          b3.destroy(),
+          b4.destroy(),
+          b5.destroy(),
+          b6.destroy(),
+          b7.destroy(),
+          b8.destroy();
+      else {
+        cursors = undefined;
+      }
       this.gameover();
     }
     if (score >= 200 && inf == false) {
@@ -629,14 +694,25 @@ class gameplay extends Phaser.Scene {
       }
       lives = 3;
       score = 0;
-      cursors = undefined;
+      if (isMobile.any())
+        b1.destroy(),
+          b2.destroy(),
+          b3.destroy(),
+          b4.destroy(),
+          b5.destroy(),
+          b6.destroy(),
+          b7.destroy(),
+          b8.destroy();
+      else {
+        cursors = undefined;
+      }
       this.lvlfinish();
     }
     if (score >= 200 && inf == true) {
       progressBar.destroy();
       bar.destroy();
       progressBar = this.add.graphics();
-      bar = this.add.image(165, 25, 'bar')
+      bar = this.add.image(165, 25, "bar");
       progressBar.clear();
       progressBar.fillStyle(0xffff1, 1);
       score = 0;
@@ -654,8 +730,8 @@ class gameplay extends Phaser.Scene {
 
   collectSoap(player, soap) {
     this.delScore2();
-    posX = soap.x
-    posY = soap.y
+    posX = soap.x;
+    posY = soap.y;
     iobject = this.add.image(posX, posY, "psoap");
     this.delScore();
     soap.destroy();
@@ -668,8 +744,8 @@ class gameplay extends Phaser.Scene {
 
   collectAlcohol(player, alcohol) {
     this.delScore2();
-    posX = alcohol.x
-    posY = alcohol.y
+    posX = alcohol.x;
+    posY = alcohol.y;
     iobject = this.add.image(posX, posY, "palcohol");
     this.delScore();
     alcohol.destroy();
@@ -681,11 +757,11 @@ class gameplay extends Phaser.Scene {
   }
 
   mudHit(player, mud) {
-    posX = mud.x
-    posY = mud.y
+    posX = mud.x;
+    posY = mud.y;
     mud.destroy();
     if (sfx == true) {
-      badsfx = this.sound.add('badsfx', { loop: false });
+      badsfx = this.sound.add("badsfx", { loop: false });
       badsfx.play();
     }
     if (stopAnim == "stop2") {
@@ -700,11 +776,11 @@ class gameplay extends Phaser.Scene {
   }
 
   virusHit(player, virus) {
-    posX = virus.x
-    posY = virus.y
+    posX = virus.x;
+    posY = virus.y;
     virus.destroy();
     if (sfx == true) {
-      badsfx = this.sound.add('badsfx', { loop: false });
+      badsfx = this.sound.add("badsfx", { loop: false });
       badsfx.play();
     }
     if (stopAnim == "stop2") {
@@ -719,12 +795,12 @@ class gameplay extends Phaser.Scene {
   }
 
   kidHit(player, kid) {
-    posX = kid.x
-    posY = kid.y
+    posX = kid.x;
+    posY = kid.y;
     kid.destroy();
     countKid = 0;
     if (sfx == true) {
-      badsfx = this.sound.add('badsfx', { loop: false });
+      badsfx = this.sound.add("badsfx", { loop: false });
       badsfx.play();
     }
     if (stopAnim == "stop2") {
@@ -741,9 +817,7 @@ class gameplay extends Phaser.Scene {
   loseLive() {
     if (lives > -1) {
       // Se quita un corazón cada vez que se choca con un objeto malo
-      heartErrase = hearts.getChildren()[
-        hearts.getChildren().length - 1
-      ];
+      heartErrase = hearts.getChildren()[hearts.getChildren().length - 1];
 
       if (heartErrase !== undefined) {
         heartErrase.destroy();
@@ -754,8 +828,8 @@ class gameplay extends Phaser.Scene {
   //función que se ejecuta al agarrar una vacuna.
   vaccinated(player, vaccine) {
     this.delScore2();
-    posX = vaccine.x
-    posY = vaccine.y
+    posX = vaccine.x;
+    posY = vaccine.y;
     iobject = this.add.image(posX, posY, "pvaccine");
     this.delScore();
     vaccine.destroy();
@@ -796,8 +870,8 @@ class gameplay extends Phaser.Scene {
 
   collectChinstrap(player, chinstrap) {
     this.delScore2();
-    posX = chinstrap.x
-    posY = chinstrap.y
+    posX = chinstrap.x;
+    posY = chinstrap.y;
     iobject = this.add.image(posX, posY, "pchinstrap");
     this.delScore();
     chinstrap.destroy();
@@ -887,9 +961,9 @@ class gameplay extends Phaser.Scene {
     timedEvent.paused = true;
     player.anims.play(stopAnim);
 
-    if( music == true ){
-      lvlfmsc = this.sound.add('lvllostmsc')
-      lvlfmsc.play()
+    if (music == true) {
+      lvlfmsc = this.sound.add("lvllostmsc");
+      lvlfmsc.play();
     }
 
     if (level !== 3) {
@@ -922,12 +996,12 @@ class gameplay extends Phaser.Scene {
       .image(325, 315, bretry)
       .setInteractive()
       .on("pointerdown", () => {
-        this.restart()
+        this.restart();
         if (sfx == true) {
           bnextsfx.play();
         }
         if (lvlfmsc !== undefined) {
-          if (lvlfmsc.isPlaying = true) {
+          if ((lvlfmsc.isPlaying = true)) {
             lvlfmsc.destroy();
             lvlfmsc = undefined;
           }
@@ -938,15 +1012,15 @@ class gameplay extends Phaser.Scene {
       .image(475, 315, bmenu)
       .setInteractive()
       .on("pointerdown", () => {
-        this.exit()
+        this.exit();
         if (music == true) {
           lvlmsc.stop();
-        } 
+        }
         if (sfx == true) {
           bnextsfx.play();
         }
         if (lvlfmsc !== undefined) {
-          if (lvlfmsc.isPlaying = true) {
+          if ((lvlfmsc.isPlaying = true)) {
             lvlfmsc.destroy();
             lvlfmsc = undefined;
           }
@@ -959,17 +1033,17 @@ class gameplay extends Phaser.Scene {
     progressBar.clear();
     progressBar.fillStyle(0xffff1, 1);
     progressBar.fillRect(56.5, 16, 200, 19);
-    if (music == true){
-      lvlsupmsc = this.sound.add('lvlsupmsc')
+    if (music == true) {
+      lvlsupmsc = this.sound.add("lvlsupmsc");
       lvlsupmsc.play();
     }
     this.add.image(400, 300, overcome);
-    player.destroy()
+    player.destroy();
     player = new Player({ scene: this, x: 380, y: 470, texture: "player" });
     this.physics.pause();
     timedEvent.paused = true;
-    player.anims.play("victory").setScale(0.50);
-    
+    player.anims.play("victory").setScale(0.5);
+
     if (level !== 3) {
       ball.anims.play("stopBall", true);
     } else if (level !== 1 && stopAnim == "stop2") {
@@ -993,12 +1067,12 @@ class gameplay extends Phaser.Scene {
         .setScale(1.2)
         .setInteractive()
         .on("pointerdown", () => {
-          this.continue()
+          this.continue();
           if (sfx == true) {
             bnextsfx.play();
-          }  
+          }
           if (lvlsupmsc !== undefined) {
-            if (lvlsupmsc.isPlaying = true) {
+            if ((lvlsupmsc.isPlaying = true)) {
               lvlsupmsc.destroy();
               lvlsupmsc = undefined;
             }
@@ -1008,31 +1082,31 @@ class gameplay extends Phaser.Scene {
         .image(290, 390, bretry)
         .setInteractive()
         .on("pointerdown", () => {
-          this.restart()
+          this.restart();
           if (sfx == true) {
             bnextsfx.play();
           }
           if (lvlsupmsc !== undefined) {
-            if (lvlsupmsc.isPlaying = true) {
+            if ((lvlsupmsc.isPlaying = true)) {
               lvlsupmsc.destroy();
               lvlsupmsc = undefined;
             }
           }
         });
-  
+
       this.add
         .image(510, 390, bmenu)
         .setInteractive()
         .on("pointerdown", () => {
-          this.exit()
+          this.exit();
           if (music == true) {
             lvlmsc.stop();
-          } 
+          }
           if (sfx == true) {
             bbacksfx.play();
           }
           if (lvlsupmsc !== undefined) {
-            if (lvlsupmsc.isPlaying = true) {
+            if ((lvlsupmsc.isPlaying = true)) {
               lvlsupmsc.destroy();
               lvlsupmsc = undefined;
             }
@@ -1043,23 +1117,23 @@ class gameplay extends Phaser.Scene {
         .image(325, 315, bretry)
         .setInteractive()
         .on("pointerdown", () => {
-          this.restart()
+          this.restart();
           if (sfx == true) {
             bnextsfx.play();
           }
           if (lvlsupmsc !== undefined) {
-            if (lvlsupmsc.isPlaying = true) {
+            if ((lvlsupmsc.isPlaying = true)) {
               lvlsupmsc.destroy();
               lvlsupmsc = undefined;
             }
           }
         });
-  
+
       this.add
         .image(475, 315, bmenu)
         .setInteractive()
         .on("pointerdown", () => {
-          this.exit()
+          this.exit();
           if (music == true) {
             lvlmsc.stop();
           }
@@ -1067,7 +1141,7 @@ class gameplay extends Phaser.Scene {
             bbacksfx.play();
           }
           if (lvlsupmsc !== undefined) {
-            if (lvlsupmsc.isPlaying = true) {
+            if ((lvlsupmsc.isPlaying = true)) {
               lvlsupmsc.destroy();
               lvlsupmsc = undefined;
             }
@@ -1137,7 +1211,18 @@ class gameplay extends Phaser.Scene {
     timedEvent.paused = true;
     bpause.destroy();
     this.physics.pause();
-    cursors = undefined;
+    if (isMobile.any())
+      b1.destroy(),
+        b2.destroy(),
+        b3.destroy(),
+        b4.destroy(),
+        b5.destroy(),
+        b6.destroy(),
+        b7.destroy(),
+        b8.destroy();
+    else {
+      cursors = undefined;
+    }
     player.anims.play(stopAnim);
     if (timedEvent4 !== undefined && iobject !== undefined) {
       iobject.destroy();
@@ -1160,20 +1245,20 @@ class gameplay extends Phaser.Scene {
       .image(400, 285, bresume)
       .setInteractive()
       .on("pointerdown", () => {
-        this.outPause()
+        this.outPause();
         if (sfx == true) {
           bnextsfx.play();
-        }  
+        }
       });
 
     button2 = this.add
       .image(335, 355, bhelp2)
       .setInteractive()
       .on("pointerdown", () => {
-        this.gameHelp()
+        this.gameHelp();
         if (sfx == true) {
           bnextsfx.play();
-        }  
+        }
       });
 
     button3 = this.add
@@ -1186,7 +1271,7 @@ class gameplay extends Phaser.Scene {
         if (sfx == true) {
           bbacksfx.play();
         }
-        this.exit()
+        this.exit();
       });
   }
 
@@ -1213,16 +1298,16 @@ class gameplay extends Phaser.Scene {
       playKid();
     }
     this.physics.resume();
-    cursors = this.input.keyboard.createCursorKeys()
+    this.controls();
     timedEvent.paused = false;
     bpause = this.add
       .image(770, 30, "bpause")
       .setInteractive()
       .on("pointerdown", () => {
-        this.pause()
+        this.pause();
         if (sfx == true) {
           bnextsfx.play();
-        }  
+        }
       });
   }
 
@@ -1317,7 +1402,7 @@ class gameplay extends Phaser.Scene {
       .image(102, 90, "bback")
       .setInteractive()
       .on("pointerdown", () => {
-        this.outHelp()
+        this.outHelp();
         if (sfx == true) {
           bbacksfx.play();
         }
@@ -1330,10 +1415,10 @@ class gameplay extends Phaser.Scene {
       .image(677, 514, bcontrols)
       .setInteractive()
       .on("pointerdown", () => {
-        this.gameControls()
+        this.gameControls();
         if (sfx == true) {
           bnextsfx.play();
-        }  
+        }
         if (iobject !== undefined) {
           iobject.destroy();
         }
@@ -1372,7 +1457,7 @@ class gameplay extends Phaser.Scene {
       .image(102, 90, "bback")
       .setInteractive()
       .on("pointerdown", () => {
-        this.outControls()
+        this.outControls();
         if (sfx == true) {
           bbacksfx.play();
         }
