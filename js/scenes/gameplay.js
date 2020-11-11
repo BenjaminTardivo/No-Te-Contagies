@@ -36,31 +36,6 @@ class gameplay extends Phaser.Scene {
     } else if (level == 2) {
       this.add.image(400, 300, "background2");
       player = new Player({ scene: this, x: 400, y: 150, texture: "player" });
-      this.anims.create({
-        key: "playBall",
-        frames: this.anims.generateFrameNumbers("ball", {
-          start: 0,
-          end: 5,
-        }),
-        framerate: 10,
-        repeat: -1,
-      });
-      this.anims.create({
-        key: "stopBall",
-        frames: [{ key: "ball", frame: 2 }],
-        framerate: 10,
-        repeat: 0,
-      });
-      ball = new Ball({ scene: this, x: 280, y: 350, texture: "ball" });
-      this.physics.add.collider(
-        player,
-        ball,
-        () => {
-          ball.anims.play("playBall", true);
-        },
-        null,
-        this
-      );
       trees = this.physics.add.staticGroup();
       trees
         .create(650, 150, "tree")
@@ -74,8 +49,6 @@ class gameplay extends Phaser.Scene {
         .setOrigin(0.57, 0.43);
       font = this.physics.add.staticGroup();
       font.create(400, 300, "font").setImmovable(true).setSize(145, 140);
-      this.physics.add.collider(ball, trees);
-      this.physics.add.collider(ball, font);
       this.physics.add.collider(player, trees);
       this.physics.add.collider(player, font);
       if (music == true) {
@@ -230,6 +203,37 @@ class gameplay extends Phaser.Scene {
         this.physics.add.collider(player, bench);
         this.physics.add.collider(paper, bench);
     }
+      if (level !== 3) {
+        this.anims.create({
+          key: "playBall",
+          frames: this.anims.generateFrameNumbers("ball", {
+            start: 0,
+            end: 5,
+          }),
+          framerate: 10,
+          repeat: -1,
+        });
+        this.anims.create({
+          key: "stopBall",
+          frames: [{ key: "ball", frame: 2 }],
+          framerate: 10,
+          repeat: 0,
+        });
+        ball = new Ball({ scene: this, x: 280, y: 350, texture: "ball" });
+        this.physics.add.collider(
+          player,
+          ball,
+          () => {
+            ball.anims.play("playBall", true);
+          },
+          null,
+          this
+        );
+        if (level == 2) {
+          this.physics.add.collider(ball, trees);
+          this.physics.add.collider(ball, font);
+        }
+      }
 
     bpause = this.add
       .image(770, 30, "bpause")
@@ -886,10 +890,9 @@ class gameplay extends Phaser.Scene {
     if( music == true ){
       lvlfmsc = this.sound.add('lvllostmsc')
       lvlfmsc.play()
-      lvlfmsc = undefined;
     }
 
-    if (level == 2) {
+    if (level !== 3) {
       ball.anims.play("stopBall", true);
     } else if (level !== 1 && stopAnim == "stop2") {
       timedEvent3.destroy();
@@ -965,9 +968,9 @@ class gameplay extends Phaser.Scene {
     player = new Player({ scene: this, x: 380, y: 470, texture: "player" });
     this.physics.pause();
     timedEvent.paused = true;
-    player.anims.play("victory").setScale(0.43);
+    player.anims.play("victory").setScale(0.50);
     
-    if (level == 2) {
+    if (level !== 3) {
       ball.anims.play("stopBall", true);
     } else if (level !== 1 && stopAnim == "stop2") {
       timedEvent3.destroy();
@@ -1140,7 +1143,7 @@ class gameplay extends Phaser.Scene {
       iobject.destroy();
       timedEvent4.destroy();
     }
-    if (level == 2) {
+    if (level !== 3) {
       ball.anims.play("stopBall", true);
     } else if (level == 3) {
       paper.anims.play("stopPaper", true);
@@ -1193,7 +1196,7 @@ class gameplay extends Phaser.Scene {
     button2.destroy();
     button3.destroy();
 
-    if (level == 2) {
+    if (level !== 3) {
       if (ball.body.velocity.x !== 0 || ball.body.velocity.y !== 0) {
         ball.anims.play("playBall", true);
       }

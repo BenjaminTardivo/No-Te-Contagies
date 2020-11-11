@@ -15,11 +15,10 @@ class preloader extends Phaser.Scene {
 		this.graphics.fillStyle(0xffffff, 1);
 		this.graphics.fillRectShape(progressBar);
 
-		this.newGraphics.fillStyle(0x3587e2, 1);
+		this.newGraphics.fillStyle(0x7054cd, 1);
 		this.newGraphics.fillRectShape(progressBarFill);
 
-		var loadingText = this.add.text(250,260,"Loading: ", { fontSize: '32px', fill: '#FFF' });
-
+		var loadingText = this.add.text(335,260,"Loading: ", { fontSize: '32px', fill: '#FFF' });
     
 		for(var i =0;i<30;i++) {
     //carga de escenas.
@@ -249,16 +248,16 @@ class preloader extends Phaser.Scene {
     this.load.video('logo', 'assets/video/logo.mp4', 'loadeddata', false, true);
 
 		this.load.on('progress', this.updateBar, {newGraphics:this.newGraphics,loadingText:loadingText});
-		this.load.on('complete', this.complete);
+    this.load.on('complete', this.complete);
 	}
 
 	updateBar(percentage) {
     this.newGraphics.clear();
-    this.newGraphics.fillStyle(0x3587e2, 1);
+    this.newGraphics.fillStyle(0x7054cd, 1);
     this.newGraphics.fillRectShape(new Phaser.Geom.Rectangle(205, 205, percentage*390, 40));
         
     percentage = percentage * 100;
-    this.loadingText.setText("Cargando: " + percentage.toFixed(2) + "%");
+    this.loadingText.setText(percentage.toFixed(2) + "%");
     console.log("P:" + percentage);
 	}
 
