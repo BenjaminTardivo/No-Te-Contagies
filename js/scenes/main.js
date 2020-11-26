@@ -39,6 +39,7 @@ class main extends Phaser.Scene {
       sselector = 'selector-es'
       sselector2 = 'selector2-es'
       iinf = 'iinf-es'
+      text = 'Puntaje = '
     }
     if (language == 'english'){
       bplay = 'bplay-en'
@@ -71,6 +72,7 @@ class main extends Phaser.Scene {
       sselector = 'selector-en'
       sselector2 = 'selector2-en'
       iinf = 'iinf-en'
+      text = 'Score = '
     }
     if(language == 'portuguese'){
       bplay = 'bplay-pt'
@@ -103,6 +105,7 @@ class main extends Phaser.Scene {
       sselector = 'selector-pt'
       sselector2 = 'selector2-pt'
       iinf = 'iinf-pt'
+      text = 'Pontuação = '
     }
     if (track == undefined && music == true) {
       track = this.sound.add("mainmsc", { loop: true });
@@ -147,6 +150,20 @@ class main extends Phaser.Scene {
         if (sfx == true) {
           bnextsfx.play();
         }
+      });
+    this.add
+      .image(644, 29, "blanguage")
+      .setScale(1.20)
+      .setInteractive()
+      .on("pointerdown", () => {
+        if (track !== undefined) {
+          track.pause();
+          track = undefined;
+        }
+        if (sfx == true) {
+          bnextsfx.play();
+        }
+        this.scene.start("lenguage");
       });
     this.add
       .image(770, 30, "bfscreen")

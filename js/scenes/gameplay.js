@@ -250,6 +250,12 @@ class gameplay extends Phaser.Scene {
       this.physics.add.collider(player, bench);
       this.physics.add.collider(paper, bench);
     }
+    if (inf == true) {
+      countvac3 = this.add.text(321, 6, "x" + countvac2, {
+        fill: "#8ffff1",
+        font: "30px Franklin Gothic Demi",
+      });
+    }
 
     bpause = this.add
       .image(770, 30, "bpause")
@@ -725,9 +731,10 @@ class gameplay extends Phaser.Scene {
       bar = this.add.image(165, 25, "bar");
       progressBar.clear();
       progressBar.fillStyle(0xffff1, 1);
+      countvac2++;
+      countvac3.setText("x" + countvac2);
       score = 0;
       delay = delay - 50;
-      countvac2++;
       timedEvent.destroy();
       timedEvent = this.time.addEvent({
         delay: delay,
@@ -996,10 +1003,22 @@ class gameplay extends Phaser.Scene {
     this.add.image(400, 300, lost);
 
     if (inf == true) {
-      this.add.text(353, 250, "Puntaje: " + countvac2, {
-        fill: "#e5d6ff",
-        font: "20px Franklin Gothic Demi",
-      });
+      if (language == 'english') {
+        this.add.text(353, 260, text + countvac2, {
+          fill: "#8ffff1",
+          font: "20px Franklin Gothic Demi",
+        });
+      } else if (language == 'portuguese') {
+        this.add.text(336, 250, text + countvac2, {
+          fill: "#8ffff1",
+          font: "20px Franklin Gothic Demi",
+        });
+      } else {
+        this.add.text(343, 250, text + countvac2, {
+          fill: "#8ffff1",
+          font: "20px Franklin Gothic Demi",
+        });
+      }
     }
 
     this.add
@@ -1178,6 +1197,9 @@ class gameplay extends Phaser.Scene {
     timedEvent.paused = false;
     if (level !== 1 && stopAnim == "stop2") {
       stopAnim = "stop";
+    }
+    if (levOver < 3 && i == 0) {
+      i = 1;
     }
     if (inf == true && countvac2 !== 0) {
       countvac2 = 0;

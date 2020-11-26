@@ -114,6 +114,7 @@ class preloader extends Phaser.Scene {
     this.load.image("besc3", "assets/images/undefined/buttons/besc3.png");
     this.load.image("blocked", "assets/images/undefined/buttons/blocked.png");
     this.load.image("binflocked", "assets/images/undefined/buttons/binflocked.png");
+    this.load.image("blanguage", "assets/images/undefined/buttons/blanguage.png");
     this.load.image("bspanish", "assets/images/undefined/buttons/bspanish.png");
     this.load.image("benglish", "assets/images/undefined/buttons/benglish.png");
     this.load.image("bportuguese", "assets/images/undefined/buttons/bportuguese.png");
